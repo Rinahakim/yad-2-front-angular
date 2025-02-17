@@ -1,0 +1,47 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    position: absolute;    
+    top: 160%;
+    width: 100%;
+}
+.components{
+    margin: 0 auto;
+}
+.container{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+}
+.container >*{
+    height: 80px;
+    padding: 8px 14px;
+    border: 1px solid rgba(160, 159, 159, 0.244);
+    border-radius: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+    cursor: pointer;
+}
+.container >*:hover{
+    border: 1px solid rgba(160, 159, 159, 0.527);
+}
+.text{
+    text-align: end;
+}
+.text >:first-child{
+    font-weight: 600;
+}
+.text >:last-child{
+    font-size: 12px;
+}
+// h2{
+//     width: 100%;
+//     text-align: start;
+// }

@@ -1,0 +1,42 @@
+:host{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 60%;
+    height: 100px;
+    width: 100%;
+    margin: 0 auto;
+}
+.category-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.option >img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 50%;
+    background-color: rgba(160, 159, 159, 0.244);
+    width: 140px;
+    height: 140px;
+}
+.option:hover >img{
+    border: 1px solid rgba(160, 159, 159, 0.244);
+    background-color: #fff;
+}
+h2{
+    font-size: 1.25rem;
+    color: rgb(102, 101, 101);
+    
+}
+
