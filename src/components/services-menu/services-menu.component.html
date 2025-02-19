@@ -1,0 +1,155 @@
+<div class="container">
+    <h2>עוד באתר</h2>
+    <div class="option">
+        <button (click)="onClickBtn(1)" [ngClass]="{'selected-button-style': realEstateBtnSelected}">נדלן</button>
+        <button (click)="onClickBtn(2)" [ngClass]="{'selected-button-style': carBtnSelected}">רכב</button>
+        <button (click)="onClickBtn(3)" [ngClass]="{'selected-button-style': yad2BtnSelected}">יד שנייה</button>
+        <button (click)="onClickBtn(4)" [ngClass]="{'selected-button-style': jobBtnSelected}">IL דרושים</button>
+    </div>
+    <div>
+        <div *ngIf="realEstateBtnSelected" class="selected-container">
+            <div>
+                <h3>קטגוריות</h3>
+                <div class="grid-container">
+                    <div>דירות למכירה</div>
+                    <div>דירות להשכרה</div>
+                    <div>מסחרי</div>
+                    <div>דירות יד1</div>
+                </div>
+            </div>
+            <div>
+                <h3>שירותים</h3>
+                <div class="grid-container">
+                    <div>חיפוש על גבי מפה</div>
+                    <div>כונס נכסים</div>
+                    <div>הערכת שיווי נכס</div>
+                    <div>משרדי תיווך בישראל</div>
+                    <div>יד2 ביטוח דירה</div>
+                </div>
+            </div>
+            <div>
+                <h3>בעלי מקצוע</h3>
+                <div class="grid-container">
+                    <div>שמאי מקרקעין</div>
+                    <div>חומרי בניין</div>
+                    <div>אינסטלטור</div>
+                    <div>חשמלאים</div>
+                    <div>שיפוצים</div>
+                    <div>הובלות</div>
+                    <div>רהיטים</div>
+                    <div>עו"ד מקרקעין</div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="carBtnSelected" class="selected-container">
+            <div>
+                <h3>יצרני רכב מובילים</h3>
+                <div class="grid-container">
+                    <div>טויוטה</div>
+                    <div>יונדאי</div>
+                    <div>מרצדס</div>
+                    <div>סקודה</div>
+                    <div>קיה</div>
+                    <div>מאזדה</div>
+                    <div>מיצובישי</div>
+                    <div>סוזוקי</div>
+                    <div>פלקסוואגן</div>
+                    <div>אאודי</div>
+                </div>
+            </div>
+            <div>
+                <h3>סוגי רכב מובילים</h3>
+                <div class="grid-container">
+                    <div>רכבים משפחתיים</div>
+                    <div>ג'יפים</div>
+                    <div>רכבים קטנים</div>
+                    <div>רכבי מנהלים</div>
+                    <div>רכבים מסחריים</div>
+                    <div>רכבי יוקרה</div>
+                    <div>קרוסרוברים</div>
+                    <div>טנדרים</div>
+                    <div>מיניוואנים</div>
+                    <div>רכבי ספורט</div>
+                </div>
+            </div>
+            <div>
+                <h3>שירותים</h3>
+                <div class="grid-container">
+                    <div>מימון רכב</div>
+                </div>
+            </div>
+            <div>
+                <h3>בעלי מקצוע</h3>
+                <div class="grid-container">
+                    <div>חשמלאי רכב</div>
+                    <div>לימודי נהיגה</div>
+                    <div>רחיצת רכב</div>
+                    <div>גרירת רכב</div>
+                    <div>אביזרים לרכב</div>
+                    <div>בדיקה ורישוי</div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="yad2BtnSelected" class="selected-container">
+            <div>
+                <h3>קטגוריות</h3>
+                <div class="grid-container">
+                    <div>ריהוט</div>
+                    <div>סלולרי</div>
+                    <div>מוצרי חשמל</div>
+                    <div>קונסולות משחק</div>
+                    <div>מחשבים וציוד נלווה</div>
+                    <div>ספורט</div>
+                    <div>לגינה</div>
+                    <div>עסקים למכירה</div>
+                    <div>הכל בחינם!</div>
+                    <div>לתינוק ולילד</div>
+                    <div>אופנה וטיפוח</div>
+                </div>
+            </div>
+            <div>
+                <h3>בעלי מקצוע</h3>
+                <div class="grid-container">
+                    <div>רופא שיניים</div>
+                    <div>ניקיון ואחזקה</div>
+                    <div>פרחים</div>
+                    <div>מנעולן</div>
+                    <div>סוכני ביטוח</div>
+                    <div>תכשיטים</div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="jobBtnSelected">
+            <br><br>
+            <div class="selected-container">
+                <div class="grid-container">
+                    <div>כל המשרות</div>
+                    <div>הייטק</div>
+                    <div>כספים</div>
+                    <div>מכירות</div>
+                </div>
+                <div class="grid-container">
+                    <div>כללי</div>
+                    <div>עורכי דין</div>
+                    <div>משאבי אנוש</div>
+                    <div>לוגיסטיקה/שילוח</div>
+                    <div>מדעים/ביוטק</div>
+                </div>
+                <div class="grid-container">
+                    <div>שיווק</div>
+                </div>
+                <div class="grid-container">
+                    <div>שירות לקוחות</div>
+                    <div>עבודה מהבית</div>
+                    <div>אינטרנט</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-container">
+    <div>יש לכם שאלה? נשמח לעזור!</div>
+    <div>בימים א'-ה' בין השעות 08:30-16:00</div>
+    <button class="contact-btn">צרו קשר</button>
+</div>

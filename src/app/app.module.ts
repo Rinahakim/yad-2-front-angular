@@ -7,11 +7,14 @@ import { HeaderComponent } from '../components/header/header.component';
 import { CarCategoryComponent } from '../components/header/car-category/car-category/car-category.component';
 import { AdvertisingComponent } from '../components/advertising/advertising/advertising.component';
 import { HomepageCategoryComponent } from '../components/home-page-category/homepage-category/homepage-category.component';
-import { HomepageComponent } from '../homepage/homepage.component';
+import { HomepageComponent } from '../pages/homepage/homepage.component';
 import { SelectorCategoryComponent } from '../components/selector-category/selector-category.component';
 import { PopularSearchesComponent } from '../components/popular-services/popular-services.component';
 import { SearchesComponent } from '../components/searches/searches.component';
 import { GetJobComponent } from '../components/get-job/get-job.component';
+import { BusinessComponent } from '../components/business/business.component';
+import { ServicesMenuComponent } from '../components/services-menu/services-menu.component';
+import { FooterComponent } from '../components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { GetJobComponent } from '../components/get-job/get-job.component';
     SelectorCategoryComponent,
     PopularSearchesComponent,
     SearchesComponent,
-    GetJobComponent
+    GetJobComponent,
+    BusinessComponent,
+    ServicesMenuComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

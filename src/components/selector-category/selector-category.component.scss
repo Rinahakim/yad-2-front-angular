@@ -5,9 +5,8 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    position: absolute;
-    top: 700px;
     position: relative;
+    top: 700px;
     margin: 0 auto;
 }
 .header{
@@ -91,7 +90,6 @@ button:hover{
     padding: 10px;
 }
 img{
-    // object-fit:cover;
     width: 290px;
 }
 .like-button{
