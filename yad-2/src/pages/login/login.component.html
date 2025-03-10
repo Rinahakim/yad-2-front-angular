@@ -1,0 +1,9 @@
+<div class="container">
+    <img src="https://assets.yad2.co.il/login/logo.svg" alt="Yad2" width="72">
+    <div *ngIf="!isSignupModel" class="show-on-mobile"></div>
+    <div class="form-container">
+        <button *ngIf="!isSignupModel" class="another-entry">כניסה למתווכים</button>
+        <app-login-form class="app-login-form" (signupModelOpen)="onSignupModelIsOpen($event)"></app-login-form>
+    </div>
+    <app-login-background class="app-login-background"></app-login-background>
+</div>

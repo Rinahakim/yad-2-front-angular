@@ -1,0 +1,256 @@
+<div class="search-container">
+    <form [formGroup]="form" (ngSubmit) = onSubmitSearch() class="form-container">
+        <div class="input-search">
+            <input [(ngModel)]="searchTerm" placeholder="איזור, עיר שכונה או רחוב" formControlName = "input">
+        </div>
+    </form>
+    <div class="line"></div>
+    <div class="button-search-container" [ngClass]="{'filter': rentalFilterModel}" 
+    (click)="onClickCategoryFilter(1)">
+        <div>
+            <span>השכרה</span>
+            <svg class="rotate" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.695 8.675a.75.75 0 011.13.98l-.073.085-6.18 6.136a.75.75 0 01-.976.07l-.084-.074L5.41 9.727a.75.75 0 01.98-1.13l.084.074 5.574 5.612 5.647-5.608z" fill="currentColor"></path></svg>
+        </div>
+        <div *ngIf="rentalFilterModel" class="rental-filter-Modal" (click)="$event.stopPropagation()">
+            <div>מכירה</div>
+            <div class="selected-rent">
+                השכרה
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-icon"><path d="M19.938 5.492a.75.75 0 011.172.929l-.069.087L9.804 18.724a1.752 1.752 0 01-2.565.012l-.104-.122-4.727-6.068a.75.75 0 011.11-1.004l.074.082 4.727 6.069a.25.25 0 00.35.043l.031-.028L19.938 5.492z" fill="currentColor"></path></svg>
+            </div>
+        </div>
+    </div>
+    <div class="button-search-container" [ngClass]="{'filter': typeFilterModel}" 
+    (click)="onClickCategoryFilter(2)">
+        <div>
+            <span>סוג הנכס</span>
+            <svg class="rotate" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.695 8.675a.75.75 0 011.13.98l-.073.085-6.18 6.136a.75.75 0 01-.976.07l-.084-.074L5.41 9.727a.75.75 0 01.98-1.13l.084.074 5.574 5.612 5.647-5.608z" fill="currentColor"></path></svg>
+        </div>
+        <div *ngIf="typeFilterModel" class="type-filter-modal" (click)="$event.stopPropagation()">
+            <div>ניתן לבחור מספר סוגים</div>
+            <div>
+                <div class="category-modal">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.2 4.31v16.11h2v-3.5a1 1 0 011-1h4a1 1 0 011 1v3.5h2V3.54l-10 .77zm6.5 13.11h-3v3h3v-3zm-6.5 4.5h17V10.787a1 1 0 00-.858-.99L15.7 9.135V3a1 1 0 00-1.076-.997l-11 .846a1 1 0 00-.924.997V21.92h1.5zm11.5-1.5v-9.77l4 .571v9.2h-4zM6.2 11.5a.5.5 0 01.5-.5h.5a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-.5a.5.5 0 01-.5-.5v-2zm.5-5.58a.5.5 0 00-.5.5v2a.5.5 0 00.5.5h.5a.5.5 0 00.5-.5v-2a.5.5 0 00-.5-.5h-.5zm4 5.58a.5.5 0 01.5-.5h.5a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-.5a.5.5 0 01-.5-.5v-2zm.5-5.58a.5.5 0 00-.5.5v2a.5.5 0 00.5.5h.5a.5.5 0 00.5-.5v-2a.5.5 0 00-.5-.5h-.5z" fill="currentColor"></path></svg>
+                    <div>דירות</div>
+                </div>
+                <div class="buttons-filter" [ngClass]="{'selected-all': selectAllApartment}">
+                    <button (click)="onClickAll(1)" (click)="$event.stopPropagation()">הכל</button>
+                    <button *ngFor="let item of buttonItems; let i = index" 
+                    (click)="onClickFilterBtn(i + 1)" (click)="$event.stopPropagation()"
+                    [ngClass]="{'selected-item': selectedItem()[i + 1]}">
+                        {{ item }}
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <div class="category-modal">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.14 3.505l-.168-.005-.163.01c-.43.042-.834.231-1.14.538l-6.621 6.619-.104.113c-.46.543-.567 1.3-.3 1.942l.062.134.072.128c.334.54.934.896 1.605.896h.324v1.423l-.002.1.003.037v3.178l.005.14A1.89 1.89 0 007.59 20.5h8.822l.14-.005.137-.015a1.891 1.891 0 001.606-1.862v-4.739h.324l.154-.005a1.887 1.887 0 001.585-1.152 1.89 1.89 0 00-.404-2.055l-6.62-6.62-.124-.113a1.882 1.882 0 00-1.07-.43zm-.146 1.552l-.06.008a.322.322 0 00-.112.048l-.048.04-6.62 6.62c-.107.108-.124.214-.068.349.047.113.116.176.226.194l.071.006h1.104a.781.781 0 01.772.681l.006.098v2.208l.002.028-.002.092v3.189c0 .161.107.288.257.318l.067.006h1.424v-3.633c0-.987.775-1.807 1.745-1.88l.14-.004h2.206c.987 0 1.806.774 1.879 1.744l.005.14v3.633h1.424a.316.316 0 00.317-.257l.007-.067V13.1a.782.782 0 01.681-.772l.098-.006h1.104c.152 0 .24-.064.296-.2.047-.113.043-.205-.021-.295l-.046-.053-6.621-6.62a.325.325 0 00-.169-.09l-.064-.007zm1.232 9.93h-2.45c-.198 0-.343.112-.376.272l-.007.072.007 3.61h3.216l-.007-3.61c0-.173-.12-.307-.302-.338l-.08-.007z" fill="currentColor"></path></svg>
+                    <div>בתים</div>
+                </div>
+                <div class="buttons-filter" [ngClass]="{'selected-all': selectAllHomes}">
+                    <button (click)="onClickAll(2)" (click)="$event.stopPropagation()">הכל</button>
+                    <button *ngFor="let item of homeItems; let i = index" 
+                    (click)="onClickFilterBtn(i + 12)" (click)="$event.stopPropagation()"
+                    [ngClass]="{'selected-item': selectedItem()[i + 12]}">
+                        {{ item }}
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <div class="category-modal">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.562 3.504a.75.75 0 00-1.124 0l-2 2.265-.066.087a.75.75 0 00-.122.41V8h-1.5V6.265a.75.75 0 00-.188-.496l-2-2.265a.75.75 0 00-1.124 0l-2 2.265-.066.087a.75.75 0 00-.122.41V8h-1.5V6.265a.75.75 0 00-.188-.496l-2-2.265a.75.75 0 00-1.124 0l-2 2.265a.75.75 0 00-.188.496V21c0 .414.336.75.75.75h4l.102-.007A.75.75 0 007.75 21v-2.5h1.5V21c0 .414.336.75.75.75h4l.102-.007A.75.75 0 0014.75 21v-2.5h1.5V21c0 .414.336.75.75.75h4a.75.75 0 00.75-.75V6.265a.75.75 0 00-.188-.496l-2-2.265zM3.75 6.548l1.249-1.415L6.25 6.549V20.25h-2.5V6.548zM12 5.133l-1.25 1.415V20.25h2.5V6.549L12 5.133zm5.75 1.415L19 5.133l1.25 1.416V20.25h-2.5V6.548zm-1.5 8.952h-1.5V17h1.5v-1.5zm-8.5 0h1.5V17h-1.5v-1.5zm8.5-3h-1.5V14h1.5v-1.5zm-8.5 0h1.5V14h-1.5v-1.5zm8.5-3h-1.5V11h1.5V9.5zm-8.5 0h1.5V11h-1.5V9.5z" fill="currentColor"></path></svg>
+                    <div>אחר</div>
+                </div>
+                <div class="buttons-filter">
+                    <button *ngFor="let item of otherItems; let i = index" 
+                    (click)="onClickFilterBtn(i + 16)" (click)="$event.stopPropagation()"
+                    [ngClass]="{'selected-item': selectedItem()[i + 16]}">
+                        {{ item }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="ok-reset-button">
+                <div (click)="onClickReset()">איפוס</div>
+                <div>אישור</div>
+            </div>
+        </div>
+    </div>
+    <div class="button-search-container" [ngClass]="{'filter': priceFilterModel}" 
+    (click)="onClickCategoryFilter(3)">
+    <div>
+        <span>מחיר</span>
+        <svg class="rotate" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.695 8.675a.75.75 0 011.13.98l-.073.085-6.18 6.136a.75.75 0 01-.976.07l-.084-.074L5.41 9.727a.75.75 0 01.98-1.13l.084.074 5.574 5.612 5.647-5.608z" fill="currentColor"></path></svg>
+    </div>
+    <div *ngIf="priceFilterModel" class="price-modal" (click)="$event.stopPropagation()">
+        <div class="price-inputs">
+            <div class="input-container">
+              <span class="currency">₪</span>
+              <input type="text" [(ngModel)]="minPrice">
+            </div>
+            <span>-</span>
+            <div class="input-container">
+              <span class="currency">₪</span>
+              <input type="text" [(ngModel)]="maxPrice">
+            </div>
+        </div>
+        <div class="slider-wrapper">
+            <input type="range" [(ngModel)]="minPrice" [min] = "min" [max] = "max" (input)="updateMin()"  
+            class="slider thumb-left">
+            <input type="range" [(ngModel)]="maxPrice" [min] = "min" [max] = "max" (input)="updateMax()"
+            class="slider thumb-right">
+        </div>
+    </div>
+    </div>
+    <div class="button-search-container" [ngClass]="{'filter': roomsFilterModel}"
+    (click)="onClickCategoryFilter(4)">
+    <div>
+        <span>חדרים</span>
+        <svg class="rotate" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.695 8.675a.75.75 0 011.13.98l-.073.085-6.18 6.136a.75.75 0 01-.976.07l-.084-.074L5.41 9.727a.75.75 0 01.98-1.13l.084.074 5.574 5.612 5.647-5.608z" fill="currentColor"></path></svg>
+    </div>
+    <div *ngIf="roomsFilterModel" class="num-of-rooms-modal" (click)="$event.stopPropagation()">
+        <button>1</button>
+        <button>1.5</button>
+        <button>2</button>
+        <button>2.5</button>
+        <button>3</button>
+        <button>3.5</button>
+        <button>4</button>
+        <button>4.5</button>
+        <button>5</button>
+        <button>5.5</button>
+        <button>+6</button>
+    </div>
+    </div>
+    <div class="button-search-container" [ngClass]="{'filter': moreFilterModel}"
+    (click)="onClickCategoryFilter(5)">
+    <div (click)="onClickMoreFilters()">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.72973 7.19595H13.8034C14.1211 6.07289 15.1536 5.25 16.3784 5.25C17.6031 5.25 18.6357 6.07289 18.9533 7.19595H20.2703C20.6733 7.19595 21 7.52266 21 7.92568C21 8.32869 20.6733 8.65541 20.2703 8.65541H18.9533C18.6357 9.77846 17.6031 10.6014 16.3784 10.6014C15.1536 10.6014 14.1211 9.77846 13.8034 8.65541H3.72973C3.32671 8.65541 3 8.32869 3 7.92568C3 7.52266 3.32671 7.19595 3.72973 7.19595ZM16.3784 6.70946C15.7067 6.70946 15.1622 7.25398 15.1622 7.92568C15.1622 8.59737 15.7067 9.14189 16.3784 9.14189C17.0501 9.14189 17.5946 8.59737 17.5946 7.92568C17.5946 7.25398 17.0501 6.70946 16.3784 6.70946Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3.72973 14.9797C3.32671 14.9797 3 15.3064 3 15.7095C3 16.1125 3.32671 16.4392 3.72973 16.4392H6.01964C6.33728 17.5622 7.36984 18.3851 8.59459 18.3851C9.81935 18.3851 10.8519 17.5622 11.1696 16.4392H20.2703C20.6733 16.4392 21 16.1125 21 15.7095C21 15.3064 20.6733 14.9797 20.2703 14.9797H11.1696C10.8519 13.8567 9.81935 13.0338 8.59459 13.0338C7.36984 13.0338 6.33728 13.8567 6.01964 14.9797H3.72973ZM9.81081 15.7095C9.81081 15.0378 9.26629 14.4932 8.59459 14.4932C7.9229 14.4932 7.37838 15.0378 7.37838 15.7095C7.37838 16.3812 7.9229 16.9257 8.59459 16.9257C9.26629 16.9257 9.81081 16.3812 9.81081 15.7095Z" fill="currentColor"></path></svg>
+        <span>סינונים נוספים</span>
+    </div>
+    </div>
+    <button class="search-btn">חיפוש</button>
+    <button class="alert-btn">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.55 15.542c.043-.14.086-.298.128-.475a2.223 2.223 0 001.473.428 9.46 9.46 0 01-.2.694h10.04l-.009-.027c-.29-.898-.555-2.377-.555-4.81a4.28 4.28 0 00-1.297-3.06A4.479 4.479 0 0012 7.023c-.49 0-.97.079-1.425.23a1.533 1.533 0 01-1.281-1.095 6.059 6.059 0 011.842-.574V4.75c0-.414.344-.75.767-.75.424 0 .767.336.767.75v.81a6.016 6.016 0 013.545 1.67 5.764 5.764 0 011.746 4.122c0 2.339.255 3.653.484 4.356.113.35.217.54.274.629.02.03.034.048.04.056a.738.738 0 01.197.795.766.766 0 01-.723.5h-3.31a.731.731 0 01-.03.197 2.944 2.944 0 01-1.083 1.527 3.05 3.05 0 01-1.803.588 3.05 3.05 0 01-1.802-.588c-.52-.381-.9-.917-1.083-1.527a.736.736 0 01-.031-.196H5.767a.769.769 0 01-.69-.422.736.736 0 01.087-.793c.015-.023.043-.07.08-.143.076-.146.19-.4.307-.79zm5.133 2.147c.103.205.254.385.442.523a1.493 1.493 0 001.764 0c.189-.138.34-.318.442-.523h-2.648zM7 13.5a.75.75 0 01-.75-.75v-2h-2a.75.75 0 010-1.5h2v-2a.75.75 0 011.5 0v2h2a.75.75 0 010 1.5h-2v2a.75.75 0 01-.75.75z" fill="currentColor"></path></svg>
+        יצירת התראה
+    </button>
+</div>
+
+<div *ngIf="popUpModalMore" class="background-popup">
+    <div class="pop-up-modal">
+        <div>
+            <button class="close-btn">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.935 5.278a.75.75 0 01.085.982l-.066.078-4.903 5.077 5.146 5.328.066.078a.75.75 0 01-1.145.964l-5.11-5.29-5.109 5.29a.75.75 0 01-1.144-.964l.065-.078 5.146-5.328-4.903-5.077-.065-.078a.75.75 0 011.144-.964l4.866 5.04 4.867-5.04a.75.75 0 011.06-.018z" fill="currentColor"></path></svg>
+            </button>
+            <div class="header-pop">סינונים נוספים</div>
+        </div>
+        <div class="category-filter first-category-filter">
+            <div class="header-category-filter">מאפייני מודעה</div>
+            <div class="checkbox-container">
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    עם תמונה
+                </div>
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    רק מושבים וקיבוצים 
+                </div>
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    עם מחיר
+                </div>
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    נכסים שמחירם ירד <span class="bold-word">חדש</span> 
+                </div>
+            </div>
+        </div>
+        <div class="category-filter">
+            <div class="header-category-filter">מי המפרסם</div>
+            <div class="checkbox-container">
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    תיווך
+                </div>
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    יזם/קבלן
+                </div>
+            </div>
+    </div>
+    <div class="category-filter">
+        <div class="header-category-filter">מאפייני הנכס</div>
+        <div class="grid-btns-category">
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 20.75a.75.75 0 01-.75-.75V4A.75.75 0 014 3.25h16a.75.75 0 01.75.75v16a.75.75 0 01-.75.75H4zm.75-16v14.5h14.5V4.75H4.75zM9.25 7l.06.003A.891.891 0 019.383 7h3.97A2.647 2.647 0 0116 9.647v.882a2.647 2.647 0 01-2.647 2.648H10v3.529c0 .487-.336.882-.75.882s-.75-.395-.75-.882V7.882c0-.487.336-.882.75-.882zM10 8.324v3.529h3.706c.498 0 .908-.454.964-1.04l.007-.136V9.5c0-.603-.375-1.1-.858-1.169l-.113-.007H10z" fill="currentColor"></path></svg>
+                חניה
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 6.98a2.75 2.75 0 00-2.75 2.75v11c0 .414.336.75.75.75h6a.75.75 0 00.75-.75v-13a.75.75 0 00-.75-.75H8zM6.75 9.73c0-.691.56-1.25 1.25-1.25h3.25v11.5h-4.5V9.73z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 6.98a.75.75 0 00-.75.75v13c0 .414.336.75.75.75h6a.75.75 0 00.75-.75v-11A2.75 2.75 0 0016 6.98h-4zm.75 1.5H16c.69 0 1.25.559 1.25 1.25v10.25h-4.5V8.48zM17.088 3.793l-.007-.009-.037-.038-1.802-1.613a.536.536 0 00-.65-.043l-.01.006-.041.032-1.78 1.615a.483.483 0 00.003.724.536.536 0 00.652.043l.008-.006.042-.033 1.425-1.293 1.438 1.286c.2.179.51.178.71-.002a.482.482 0 00.049-.67z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.158 3.72l.007.009a.582.582 0 01-.06.807.635.635 0 01-.843.003l-1.37-1.227-1.364 1.238-.048.037-.009.006a.636.636 0 01-.773-.052.583.583 0 01-.004-.872l1.785-1.62.047-.036.01-.006a.636.636 0 01.773.052l1.807 1.618.042.043zm-2.267-.542l1.438 1.286c.2.179.51.178.71-.002a.482.482 0 00.049-.67l-.007-.008-.037-.038-1.802-1.613a.536.536 0 00-.65-.043l-.01.006-.041.032-1.78 1.615a.483.483 0 00.003.724.536.536 0 00.652.043l.008-.006.042-.033 1.425-1.293zM10.488 2.807l-.007.009-.037.038-1.802 1.613a.536.536 0 01-.65.043l-.01-.006-.041-.033-1.78-1.614a.483.483 0 01.003-.724.536.536 0 01.651-.043l.01.006.04.033 1.426 1.293L9.73 2.136c.2-.18.51-.178.71.002a.482.482 0 01.049.67z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M10.558 2.88l.007-.009a.582.582 0 00-.06-.807.635.635 0 00-.843-.003l-1.37 1.227L6.928 2.05l-.048-.037-.009-.006a.636.636 0 00-.773.052.583.583 0 00-.004.872L7.88 4.55l.047.036.01.006a.636.636 0 00.773-.052l1.807-1.618.042-.043zm-2.267.542L9.73 2.136c.2-.18.51-.178.71.002a.482.482 0 01.049.67l-.007.008-.037.038-1.802 1.613a.536.536 0 01-.65.043l-.01-.006-.041-.033-1.78-1.614a.483.483 0 01.003-.724.536.536 0 01.651-.043l.01.006.04.033 1.426 1.293z" fill="currentColor"></path></svg>
+                מעלית
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.265 3.712l-5.012-1.671a.8.8 0 00-.506 0L6.735 3.712A3.994 3.994 0 004 7.507V11.6c0 6.05 7.36 9.392 7.675 9.531a.799.799 0 00.65 0c.315-.139 7.675-3.48 7.675-9.53V7.506a3.994 3.994 0 00-2.735-3.795zM18.4 11.6c0 4.364-5.055 7.227-6.4 7.912-1.346-.683-6.4-3.537-6.4-7.912V7.507A2.4 2.4 0 017.242 5.23L12 3.643l4.758 1.587A2.4 2.4 0 0118.4 7.507V11.6z" fill="currentColor"></path><path d="M14.64 8.64L11.29 12l-1.796-1.872a.801.801 0 10-1.152 1.11l1.844 1.92a1.498 1.498 0 001.076.48h.027a1.498 1.498 0 001.068-.443l3.417-3.418a.801.801 0 00-.259-1.31.803.803 0 00-.875.173z" fill="currentColor"></path></svg>
+                ממ"ד
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 6.75A2.75 2.75 0 019 4h6a2.75 2.75 0 012.75 2.75v4.5H20a.75.75 0 010 1.5h-1.25v5.5H20a.75.75 0 010 1.5H4a.75.75 0 010-1.5h1.25v-5.5H4a.75.75 0 010-1.5h2.25v-4.5zm.5 6v5.5h2.5v-5.5h-2.5zm4 0v5.5h2.5v-5.5h-2.5zm4 0v5.5h2.5v-5.5h-2.5zM9 5.5c-.69 0-1.25.56-1.25 1.25V11h8.5V6.75c0-.69-.56-1.25-1.25-1.25H9z" fill="currentColor"></path></svg>
+                מרפסת
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 9a.5.5 0 000 1h9a.5.5 0 000-1h-9z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3.25 3A.75.75 0 014 2.25h16a.75.75 0 01.75.75v9a.75.75 0 01-.75.75H4a.75.75 0 01-.75-.75V3zm16 .75H4.75v7.5h14.5v-7.5z" fill="currentColor"></path><path d="M17.915 15.28a.75.75 0 01.511.93c-.078.27-.094.689.078 1.04.147.3.493.675 1.41.805a.75.75 0 01-.21 1.485c-1.322-.187-2.144-.81-2.547-1.63-.377-.769-.325-1.59-.171-2.12a.75.75 0 01.93-.51zM14.223 15.98a.75.75 0 00-1.44-.419c-.31 1.068-.138 2.434.407 3.697.552 1.28 1.521 2.543 2.924 3.385a.75.75 0 00.772-1.286c-1.097-.658-1.873-1.659-2.319-2.693-.453-1.05-.528-2.05-.344-2.685zM9.866 15.05a.75.75 0 00-.511.93c.184.635.109 1.633-.344 2.684-.446 1.034-1.222 2.035-2.32 2.693a.75.75 0 10.772 1.286c1.404-.842 2.373-2.105 2.925-3.385.544-1.263.717-2.63.407-3.697a.75.75 0 00-.929-.511zM4.002 18.046a.75.75 0 00-.004 1.5c.552 0 1.355-.176 1.99-.752.675-.613 1.047-1.576.86-2.899a.75.75 0 00-1.485.21c.13.917-.136 1.354-.383 1.578-.29.263-.696.363-.978.363z" fill="currentColor"></path></svg>
+                מיזוג
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.821 8.786a.75.75 0 01.75-.75H18.43a.75.75 0 01.75.75v8.571a2.893 2.893 0 01-2.893 2.893H7.714a2.893 2.893 0 01-2.893-2.893V8.786zm1.5.75v7.821c0 .77.624 1.393 1.393 1.393h8.572c.769 0 1.393-.624 1.393-1.393V9.536H6.32z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9.107 12a.75.75 0 01.75-.75h4.286a.75.75 0 010 1.5H9.857a.75.75 0 01-.75-.75zM3.75 5.571c0-1.006.815-1.821 1.821-1.821H18.43c1.006 0 1.821.815 1.821 1.821v2.143a1.821 1.821 0 01-1.821 1.822H5.57A1.821 1.821 0 013.75 7.714V5.571zm1.821-.321a.321.321 0 00-.321.321v2.143c0 .178.144.322.321.322H18.43a.321.321 0 00.321-.322V5.571a.321.321 0 00-.321-.321H5.57z" fill="currentColor"></path></svg>
+                מחסן
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.125 3.658c0-.966.783-1.75 1.75-1.75h10.027c.967 0 1.75.784 1.75 1.75v1.29h.973c.69 0 1.25.56 1.25 1.25v4.857c0 .69-.56 1.25-1.25 1.25h-5.75v1.643h.75a.75.75 0 01.75.75v6c0 .23-.104.437-.267.575-.31.492-.858.819-1.482.819h-1a1.749 1.749 0 01-1.482-.819.748.748 0 01-.269-.575v-6a.75.75 0 01.75-.75h.75v-1.893c0-.69.56-1.25 1.25-1.25h5.75V6.449h-.723v1.29a1.75 1.75 0 01-1.75 1.75H5.875a1.75 1.75 0 01-1.75-1.75v-4.08zm1.75-.25a.25.25 0 00-.25.25v4.08c0 .138.112.25.25.25h10.027a.25.25 0 00.25-.25v-4.08a.25.25 0 00-.25-.25H5.875zm5.5 12.29v4.25h1.5v-4.265a.25.25 0 00-.25-.235h-1a.25.25 0 00-.25.25z" fill="currentColor"></path></svg>
+                משופצת
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.473 5.818a.884.884 0 100-1.769.884.884 0 000 1.77zm0 1.684a2.569 2.569 0 100-5.137 2.569 2.569 0 000 5.137zM11.777 10.092c0-.465.377-.842.843-.842h3.282a.842.842 0 110 1.684H12.62a.842.842 0 01-.843-.842z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9.51 14.346l-.914-6.957 1.67-.22.814 6.193 5.403-.229a.842.842 0 01.837.584l1.282 3.988h1.276a.842.842 0 110 1.684h-1.89a.842.842 0 01-.801-.584l-1.274-3.962-5.532.234a.842.842 0 01-.87-.731z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8.048 10.606A.842.842 0 017.6 11.71c-.447.188-.636.302-.795.425-.122.094-.22.184-.368.32-.1.092-.223.206-.392.355a4.293 4.293 0 106.584 5.504c.471-.599.556-.863.824-1.703l.006-.017a.842.842 0 111.604.513l-.006.02c-.285.892-.444 1.39-1.104 2.228a5.977 5.977 0 11-9.127-7.708l.031-.035.036-.03c.113-.101.222-.2.326-.296.2-.184.386-.353.56-.486.315-.243.646-.423 1.166-.642a.842.842 0 011.103.448z" fill="currentColor"></path></svg>
+                גישה לנכים
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 6.643A2.893 2.893 0 016.643 3.75h10.714a2.893 2.893 0 012.893 2.893v10.714a2.893 2.893 0 01-2.893 2.893H6.643a2.893 2.893 0 01-2.893-2.893V6.643zM6.643 5.25c-.77 0-1.393.624-1.393 1.393v10.714c0 .77.624 1.393 1.393 1.393h10.714c.77 0 1.393-.624 1.393-1.393V6.643c0-.77-.624-1.393-1.393-1.393H6.643z" fill="currentColor"></path><path d="M11.25 4.813h1.5v14.374h-1.5V4.813z" fill="currentColor"></path><path d="M19.147 11.25v1.5H4.853v-1.5h14.294z" fill="currentColor"></path></svg>
+                סורגים
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.898 5.5c-.772 0-1.398.626-1.398 1.398V19.25a.75.75 0 01-1.5 0V6.898C4 5.298 5.298 4 6.898 4h9.667c1.6 0 2.898 1.298 2.898 2.898V19.25a.75.75 0 01-1.5 0V6.898c0-.772-.626-1.398-1.398-1.398H6.898z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M5.287 10.444H19.25v1.5H5.287v-1.5zM9.907 7.972a.75.75 0 01.75-.75h2.149a.75.75 0 010 1.5h-2.149a.75.75 0 01-.75-.75zM9.907 14.417a.75.75 0 01.75-.75h2.149a.75.75 0 010 1.5h-2.149a.75.75 0 01-.75-.75zM5.287 16.889H19.25v1.5H5.287v-1.5z" fill="currentColor"></path></svg>
+                מרוהטת
+            </button>
+            <button>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.486 1.75h-.472a.77.77 0 00-.027 0H6.98a1 1 0 00-.806.408L1.697 8.249a1 1 0 00.032 1.227l9.498 11.581a1 1 0 001.546 0L22.27 9.476a1 1 0 00.033-1.227l-4.477-6.091a1 1 0 00-.806-.408h-4.507a.77.77 0 00-.027 0zm-.236 1.81L9.66 8h5.18l-2.59-4.44zm2.662 5.94H9.588l2.662 8.745L14.912 9.5zm-.694 7.429L16.48 9.5h3.832l-6.093 7.429zM16.576 8l-2.77-4.75h2.961L20.258 8h-3.682zM3.741 8h4.182l2.771-4.75H7.233L3.74 8zm6.835 9.898L8.02 9.5H3.69l6.886 8.398z" fill="currentColor"></path></svg>
+                בבלעדיות
+            </button>
+        </div>
+    </div>
+        <div class="category-filter">
+            <div class="header-category-filter">מצב הנכס</div>
+            <div class="checkbox-container checkbox-container-row">
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    חדש מקבלן (לא גרו בכלל)
+                </div>
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    חדש (נכס בן עד 10 שנים)
+                </div>
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    משופץ (שופץ ב-5 שנים האחרונות)
+                </div>
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    במצב שמור (במצב טוב, לא שופץ)
+                </div>
+                <div>
+                    <input type="checkbox" class="checkbox-input">
+                    דרוש שיפוץ (זקוק לעבודת שיפוץ)
+                </div>
+            </div>
+    </div>
+</div>

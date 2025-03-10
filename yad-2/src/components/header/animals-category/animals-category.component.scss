@@ -1,0 +1,103 @@
+:host{
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 9;
+    background-color: #fff;
+    ul{
+        display: grid;
+        grid-template-rows: repeat(10,1fr);
+        box-shadow: 5px 1px 20px rgba(128, 128, 128, 0.354);
+        line-height: 25px;
+        grid-auto-flow: column;
+        min-width: 225px;
+        padding: 25px;
+        gap: 20px;
+        list-style: none;
+    }
+    a:hover{
+        cursor: pointer;
+        color: #ff7100;
+    }
+    a{
+        text-decoration: none;
+        color: rgb(54,54,54);
+    }
+}
+:host-context(.category-in-tablet){
+    z-index: 4;
+    background-color: #fff;
+    position: fixed;
+    top: -20px;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    width: 328px;
+    min-height: 100%;
+    animation: slide-in 0.5s ease-out;
+    
+    ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        height: 100%;
+        position: relative;
+        gap: 8px;
+    }
+    .btn{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 50px;
+        background-color: rgb(238,238,238);
+        padding: 0;
+        margin: 0;
+        border-width: 0;
+        line-height: 1.15;
+        font-size: 100%;
+        cursor: pointer;
+    }
+    .btn >*{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+    }
+}
+.opt{
+    color: rgb(54,54,54);
+    font-size: 16px;
+    font-weight: 300;
+}
+.opt:hover{
+    cursor: pointer;
+    color: #ff7100;
+}
+.hr{
+    background-color: #8f8e8d62;
+    height: 0.5px;
+    width: 100%;
+}
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slide-out {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
