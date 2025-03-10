@@ -1,0 +1,111 @@
+:host{
+    width: 1200px;
+    height: 342px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    position: relative;
+    top: 700px;
+    margin: 0 auto;
+}
+.header{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row-reverse;
+    direction: ltr;
+    gap: 2px;
+}
+h2{
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+.location-icon,
+span{
+    color: #ff7100;
+    font-weight: 500;
+}
+.option{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row-reverse;
+    margin-bottom: 20px;
+    direction: ltr;
+}
+button{
+    border-radius: 15px;
+    border: 1px solid rgba(204,204,204);
+    font-size: 14px;
+    cursor: pointer;
+    height: 36px;
+    width: 100px;
+    background-color: #fff;
+}
+button:hover{
+    border: 1px solid rgb(184, 183, 183);
+}
+.selected-button-style{
+    color: #fff;
+    background-color: #ff7100;
+    border: none;
+}
+.posts{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 15px;
+    flex-direction: row;
+}
+.page-btn{
+    background-color: rgb(255, 255, 255);
+    padding: 4px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .12);
+    border-radius: 50%;
+    margin-inline: -16px;
+    
+}
+.disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+.post {
+   position: relative;
+   cursor: pointer;
+   direction: rtl;
+   width: 290px;
+   height: 230px;
+   border: 1px solid rgba(184, 183, 183, 0.486);
+   border-radius: 10px;
+}
+.post:hover{
+    border: 1px solid rgba(160, 159, 159, 0.527);
+    box-shadow: 0px 1px 5px rgba(160, 159, 159, 0.527);
+}
+.post>:last-child{
+    padding: 10px;
+}
+img{
+    width: 290px;
+}
+.like-button{
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    border-radius: 50%;
+    background-size: 4000%;
+    background-position-x: -6px;
+    background-position-y: -4.5px;
+    background-color: rgb(255, 255, 255);
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+    background-image: url(	https://assets.yad2.co.il/yad2site/y2assets/images/web_heart_animation_all_platform.png);
+}
+// .like-button:hover{
+   
+// }
