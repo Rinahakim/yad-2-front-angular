@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Apartment } from '../../models/apartment';
 import { ApartmentServiceService } from '../../services/apartment-service.service';
 import { Router } from '@angular/router';
+import { MyCustomPipePipe } from '../../custom-pipe/my-custom-pipe.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-selector-category',
   standalone: false,
-  
   templateUrl: './selector-category.component.html',
   styleUrl: './selector-category.component.scss'
 })

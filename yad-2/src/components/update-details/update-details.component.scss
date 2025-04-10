@@ -1,0 +1,336 @@
+:host{
+    height: 100%;
+    width: calc(100% - 235px);
+    display: block;
+    margin-right: 235px;
+    .container-modal{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.header{
+    margin-left: auto;
+    margin-right: 300px;
+    margin-bottom: 1.25rem;
+    margin-top: 100px;
+    display: block;
+    width: 1044px;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    z-index: 10;
+}
+.container{
+    padding: 30px 0px;
+    background-color: #fff;
+    box-shadow: 0 2px 25px hsla(0, 0%, 42%, .088);
+    max-width: 1044px;
+    margin: 1.625rem auto;
+    display: grid;
+    grid-template-columns: 251px auto;
+    grid-template-rows: auto;
+    grid-template-areas: "imageProfile formProfile";
+    box-shadow: 0 2px 25px hsla(0, 0%, 42%, .088);
+    height: 655px;
+    width: 940px;
+}
+.form-container{
+    grid-area: formProfile;
+}
+.profile-container{
+    justify-self: start;
+    display: grid;
+    grid-template-columns: 283px 283px;
+    gap: 4px 50px;
+    grid-auto-rows: auto;
+    grid-template-areas:
+        "title ."
+        "name lastName"
+        "phone email"
+        "virtualToggle ."
+        "dateB bumpToggle"
+        "card .";
+}
+.update-header{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    color: rgb(54, 54, 54);
+    grid-area: title;
+}
+.field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    label{
+        margin-bottom: 4px;
+        color: rgb(54,54,54);
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 20px;
+    }
+}
+.field1{
+    grid-area: name;
+}
+.field2{
+    grid-area: lastName;
+}
+.field3{
+    grid-area: phone;
+}
+.field4{
+    grid-area: email;
+}
+.field5{
+    grid-area: dateB;
+}
+.note{
+    color: rgb(139, 66, 208);
+    background-color: rgb(248 240 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.375rem;
+    font-size: .875rem;
+    font-weight: 500;
+    width: 283px;
+    grid-area: card;
+    height: 40px;
+    p{
+        line-height: 1.25rem;
+        padding: 0 10px;
+        margin: 0;
+    }
+    div{
+        position: relative;
+        left: 10px;
+        width: 36px;
+        height: 35px;
+        .img1{
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 10px;
+            height: 10px;
+        }
+        .img2{
+            position: absolute;
+            left: 15px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+        }
+        .img3{
+            position: absolute;
+            left: 25px;
+            top: 20px;
+            width: 8px;
+            height: 8px;
+        }
+    }
+}
+.addr-container{
+    margin-bottom: 5rem;
+    display: grid;
+    grid-template-columns: 283px 283px;
+    gap: 0 50px;
+    grid-auto-rows: auto;
+    grid-template-areas:
+        "titleAddress titleAddress"
+        "subTitleAddress subTitleAddress"
+        "settlement street";
+    margin-top: 54px;
+    label{
+        margin-bottom: 4px;
+        color: rgb(54,54,54);
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 20px;
+    }
+}
+.addr-header{
+    grid-area: titleAddress;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    color: rgb(54, 54, 54);
+}
+.sub-title-addr{
+    margin-bottom: 1.25rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: rgb(153 153 153);
+    grid-area: subTitleAddress;
+}
+.city{
+    grid-area: settlement;
+}
+input{
+    border: 1px solid rgb(204,204,204);
+    border-radius: 4px;
+    padding: 0 11px;
+    transition: border-color .2s;
+    height: 44px;
+    font-size: 1rem;
+    color: rgb(54,54,54);
+}
+input:focus{
+    outline: none;
+    border-color: #000;
+}
+.street-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    grid-area: street;
+}
+.city,
+.street,
+.number{
+    display: flex;
+    flex-direction: column;
+}
+#number{
+    width: 70px;
+}
+#street{
+    width: 200px;
+}
+.btn-container{
+    display: flex;
+    justify-content: left;
+    width: 616px;
+}
+.disabled-btn,
+.save-btn{
+    border: none;
+    width: 185px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: #fff;
+    min-height: 48px;
+}
+.save-btn{
+    background-color: rgb(255,113,0);
+    cursor: pointer;
+}
+.disabled-btn{
+    cursor: not-allowed;
+    background-color: rgb(238,238,238);
+    color: rgb(204,204,204);
+}
+.btn-container>:first-child{
+    border: none;
+    color: rgb(54,54,54);
+    padding: 0 24px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1.125rem;
+    min-height: 48px;
+    background-color: #fff;
+}
+.image-profile{
+    grid-area: imageProfile;
+    justify-self: center;
+    position: relative;
+}
+.border-image-profile{
+    border: 2px solid rgb(139 66 208);
+    border-radius: 50%;
+    color: rgb(139 66 208);
+    font-size: 1.75rem;
+    font-weight: 600;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+.edit-image-btn{
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid rgb(238 238 238);
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 70px;
+    cursor: pointer;
+    svg{
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+}
+@media(max-width: 1280px){
+    .container{
+        left: 0;
+        right: 235px;
+        bottom: 0;
+        top: 0;
+    }
+}
+@media(max-width: 880px){
+    .container-modal{
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        top: -28px;
+        .header{
+            display: none;
+        }
+    }
+    .container{
+        background-color: rgb(248,248,248);
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 70px;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        padding-top: 80px;
+        .note,
+       .edit-image-btn{
+        display: none;
+       }
+       .profile-container{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            input{
+                width: 80%;
+            }
+       }
+       .addr-container{
+        display: flex;
+        flex-direction: column;
+        input{
+            width: 80%;
+        }
+        .street-container{
+            justify-content: start;
+            margin-top: 20px;
+            .street{
+                #street{
+                    width: 388px;
+                }
+            }
+        }
+    }
+    .btn-container{
+        width: 100%;
+        justify-content: center;
+    }
+  }
+}

@@ -22,7 +22,8 @@
                 <img [src]="post.urlImg" alt="Post Image">
                 <span class="like-button"></span>
                 <div>
-                    <div>{{post.price}} ₪</div>
+                    <div>{{post.price | currency: 'ILS' : 'symbol'}}</div>
+                    <!-- <div>{{ post.price | myCustomPipe: '₪' }}</div> -->
                     <div>{{post.address}}</div>
                     <div>{{post.numberOfRooms}} חדרים</div>
                 </div>
@@ -32,7 +33,7 @@
             <div class="post" *ngFor="let post of visiblePosts">
                 <img [src]="post.urlImg" alt="Post Image">
                 <span class="like-button"></span>
-                <div>{{post.price}} ₪</div>
+                <div>{{post.price | currency: 'ILS' : 'symbol'}}</div>
                 <div>{{post.description}}</div>
                 <div>{{post.year}}</div>
             </div>
@@ -41,7 +42,7 @@
             <div class="post" *ngFor="let post of visiblePosts">
                 <img [src]="post.urlImg" alt="Post Image">
                 <span class="like-button"></span>
-                <div>{{post.price}} ₪</div>
+                <div>{{post.price | currency: 'ILS' : 'symbol'}}</div>xx
                 <div>{{post.description}}</div>
                 <div>{{post.address}}</div>
             </div>
@@ -57,7 +58,7 @@
                 <div class="addr">{{post.address}}</div>
                 <div>{{post.numberOfRooms}} חדרים • קומה {{post.numberOfFloor}} • {{post.size}} מ"ר</div>
             </div>
-            <div class="price">{{post.price}} ₪</div>
+            <div class="price">{{post.price | currency: 'ILS' : 'symbol'}}</div>
         </div>
     </div>
 </div>

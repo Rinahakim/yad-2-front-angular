@@ -1,0 +1,123 @@
+<div class="container" [ngClass]="{'container-close': showDoneIcon}">
+    <div class="header">
+        <div *ngIf="!showDoneIcon" class="level-number-open"
+        [ngClass]="{'level-number': !showDoneIcon && currentWindClose}">2</div>
+        <ng-content></ng-content>
+        <div class="text-header">כתובת הנכס</div>
+        <div *ngIf="showDoneIcon" class="more-information">
+            {{formContainer2.get('PropertyType')?.value}} - 
+            {{formContainer2.get('City')?.value}} - {{formContainer2.get('Street')?.value}} -
+             {{formContainer2.get('HouseNumber')?.value}} - קומה {{formContainer2.get('FloorNumber')?.value}}
+        </div>
+    </div>
+    <form [formGroup]="formContainer2" (ngSubmit) = onSubmit() class="form-container" >
+        <div class="right-side-container">
+            <div>סימנו עבורך את השדות החובה, שלא נפספס פרט חשוב</div>
+            <div class="field">
+                <label for="property-type">סוג הנכס*</label>
+                <input type="text" id="property-type" formControlName="PropertyType" 
+                (click)="onClickPropertyType()" [value]="selectedPropertyType" readonly>
+                <div class="svg" [ngClass]="{'close-icon': rotateIcon, 'open-icon': !rotateIcon}">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="flip-icon_icon__lf1Qt"><path d="M17.695 8.675a.75.75 0 011.13.98l-.073.085-6.18 6.136a.75.75 0 01-.976.07l-.084-.074L5.41 9.727a.75.75 0 01.98-1.13l.084.074 5.574 5.612 5.647-5.608z" fill="currentColor"></path></svg>
+                </div>
+                <div class="property-type-container" *ngIf="isOpenPropertyTypesWind">
+                    <div *ngFor="let propertyType of PropertyTypes"
+                    (click)="onSelectPropertyType(propertyType)" class="option-property-type">
+                        {{propertyType}}
+                        <svg *ngIf="propertyType === selectedPropertyType" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="item-text_checkIcon__zpNnB"><path d="M19.938 5.492a.75.75 0 011.172.929l-.069.087L9.804 18.724a1.752 1.752 0 01-2.565.012l-.104-.122-4.727-6.068a.75.75 0 011.11-1.004l.074.082 4.727 6.069a.25.25 0 00.35.043l.031-.028L19.938 5.492z" fill="currentColor"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label for="city">ישוב*</label>
+                <input type="text" id="city" formControlName="City" placeholder="איפה נמצא הנכס">
+            </div>
+            <div class="field">
+                <label for="street">רחוב*</label>
+                <input type="text" id="street" formControlName="Street" placeholder="הכנסת שם הרחוב">
+                <div class="note-message">לא ניתן לעדכן את שם הרחוב לאחר פרסום המודעה</div>
+            </div>
+            <div class="link">לא מצאת את הרחוב?</div>
+            <div class="field">
+                <label for="house-number">מס' בית*</label>
+                <input type="text" id="house-number" formControlName="HouseNumber" placeholder="מספר בית">
+            </div>
+            <div class="flex-col-fields">
+                <div class="field">
+                    <label for="floor-number">קומה*</label>
+                    <input type="text" id="floor-number" formControlName="FloorNumber" placeholder="מספר קומה">
+                </div>
+                <div class="field">
+                    <label for="floor-number-total">סה"כ קומות בבניין*</label>
+                    <input type="text" id="floor-number-total" formControlName="FloorNumberTotal" 
+                    placeholder='סה"כ קומות'>
+                </div>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" class="checkbox">על עמודים
+            </div>
+            <div class="field auto-field">
+                <label for="neighborhood">שכונה</label>
+                <input type="text" id="neighborhood" formControlName="Neighborhood">
+                <div>המידע הזה מגיע מגוף ממשלתי ולא ניתן לשינוי</div>
+            </div>
+            <div class="field auto-field">
+                <label for="area">אזור</label>
+                <input type="text" id="area" formControlName="Area">
+                <div>המידע הזה מגיע מגוף ממשלתי ולא ניתן לשינוי</div>
+            </div>
+            <hr>
+            <div class="field">
+                <label for="property-status">מצב הנכס</label>
+                <input type="text" id="property-status" formControlName="PropertyStatus"
+                (click)="onClickPropertyStatus()" [value]="selectedPropertyStatuse" readonly>
+                <div class="svg" [ngClass]="{'close-icon': rotateIconInStatus, 'open-icon': !rotateIconInStatus}">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="flip-icon_icon__lf1Qt"><path d="M17.695 8.675a.75.75 0 011.13.98l-.073.085-6.18 6.136a.75.75 0 01-.976.07l-.084-.074L5.41 9.727a.75.75 0 01.98-1.13l.084.074 5.574 5.612 5.647-5.608z" fill="currentColor"></path></svg>
+                </div>
+                <div class="property-status-container" *ngIf="isOpenPropertyStatuseWind">
+                    <div *ngFor="let propertyStatus of PropertyStatuses"
+                    (click)="onSelectPropertyStatus(propertyStatus)" class="option-property-type">
+                        {{propertyStatus}}
+                        <svg *ngIf="propertyStatus === selectedPropertyStatuse" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="item-text_checkIcon__zpNnB"><path d="M19.938 5.492a.75.75 0 011.172.929l-.069.087L9.804 18.724a1.752 1.752 0 01-2.565.012l-.104-.122-4.727-6.068a.75.75 0 011.11-1.004l.074.082 4.727 6.069a.25.25 0 00.35.043l.031-.028L19.938 5.492z" fill="currentColor"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <app-selection
+                    title="כיווני אוויר"
+                    [options]="['1', '2', '3', '4']"
+                    [selectedOption]="airDirectionSignal">
+                </app-selection>
+            </div>
+            <div class="flex-row">
+                <div class="field">
+                    <app-selection 
+                        title="נוף פתוח"
+                        [options]="['ללא', 'לים', 'לפארק', 'לעיר']"
+                        [selectedOption]="openBodySignal">
+                    </app-selection>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" class="checkbox">נכס עורפי
+                </div>
+            </div>
+                <hr>
+                <div class="checkbox-container">
+                    <input type="checkbox" class="checkbox">אני רוצה לקבל עדכון חודשי במייל עם הערכת שווי מעודכנת עבור הנכס, עסקאות באיזור והצעות מקצועיות מיועצי נדל״ן
+                </div>
+            <div class="submit-back-btns">
+                <button type="button" (click)="onClickBtnBack()">חזרה</button>
+                <button [disabled]="this.formContainer2.invalid">לשלב הבא</button>
+            </div>
+        </div>
+        <div class="left-side-container">
+            <div class="tip-container">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="rent-address_tipIcon__LGk_9"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.284 6.375a1.686 1.686 0 00-2.26 1.586v8.078a1.686 1.686 0 002.358 1.546L8.04 15.13a.75.75 0 00.451-.688V9.147a.75.75 0 00-.495-.705L2.284 6.375zm-.76 1.586c0-.13.128-.219.25-.175l5.218 1.888v4.275l-5.207 2.26a.186.186 0 01-.26-.17V7.96z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M23.976 7.576c0-1.83-1.506-3.294-3.337-3.294h-10.31c-1.83 0-3.336 1.463-3.337 3.294v8.847c0 1.832 1.506 3.295 3.338 3.295h10.309c1.831 0 3.337-1.464 3.337-3.295V7.576zm-3.337-1.794c1.027 0 1.837.815 1.837 1.794v8.847c0 .98-.81 1.794-1.837 1.795h-10.31c-1.026 0-1.837-.816-1.837-1.795V7.576c0-.979.811-1.794 1.838-1.794h10.309z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M16.962 7.79a1.15 1.15 0 011.788.957v6.506a1.15 1.15 0 01-1.788.956l-4.879-3.252a1.15 1.15 0 010-1.914l4.88-3.252zm.288 1.611L13.352 12l3.898 2.599V9.4z" fill="currentColor"></path></svg>
+                <div class="text-tip">
+                    <div>המלצה שלנו</div>
+                    <div>העלאת וידאו של הנכס תמשוך יותר מתעניינים למודעה שלך</div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

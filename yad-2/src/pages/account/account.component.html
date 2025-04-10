@@ -1,0 +1,6 @@
+<app-header (toggleListWindEvent)="toggleListWind($event)"></app-header>
+<app-account-list (updateDetailsRequired)="handleUpdateDetails(true)"
+[isOpenListWindInAccount$]="isOpenListWindInAccount$"></app-account-list>
+<app-update-details *ngIf="toOpenUpdateDetailsWind" 
+(closeUpdateDetailsWind)="handleUpdateDetails(false)">
+</app-update-details>

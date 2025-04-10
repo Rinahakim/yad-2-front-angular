@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="header">אני רוצה לפרסם מודעה בלוח...</div>
+    <div class="categorys">
+        <div class="category" (click)="onClickCategory(true)">
+            <img src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/nadlan.svg">
+            <img class="img-hover" src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/nadlan_active.svg">
+            <div class="category-header">נדל"ן</div>
+            <div class="description">מכירה, השכרה, מסחרי</div>
+            <button class="category-btn">מתחילים</button>
+        </div>
+        <div class="category" (click)="onClickCategory()">
+            <img src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/vehicle.svg"> 
+            <img class="img-hover" src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/vehicle_active.svg" alt="">
+            <div class="category-header">כלי רכב</div>
+            <div class="description">כלי רכב, דו גלגלי, כלי שיט, מיוחדים</div>
+            <button class="category-btn">מתחילים</button>
+        </div>
+        <div class="category yad2-category" (click)="onClickCategory()">
+            <img src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/second_hand.svg">
+            <img class="img-hover" src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/second_hand_active.svg" alt="">
+            <div class="category-header">יד שניה</div>
+            <div class="description">לבית לגינה ולמשרד, חשמל, ספורט פנאי ושונות</div>
+            <button class="category-btn">מתחילים</button>
+            <div class="title-yad2">יש לכם פריט מיותר? תרוויחו עליו כסף!</div>
+        </div>
+    </div>
+    <div class="categorys">
+        <div class="category-row2" (click)="onClickCategory()">
+            <img src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/business.svg">
+            <img class="img-hover" src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/business_active.svg" alt="">
+            <div class="category-header">עסקים למכירה</div>
+            <div class="description">הייטק, בתי קפה וכו</div>
+            <button class="category-btn">מתחילים</button>
+        </div>
+        <div class="category-row2" (click)="onClickCategory()">
+            <img src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/profession.svg">
+            <img class="img-hover" src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/profession_active.svg" alt="">
+            <div class="category-header">בעלי מקצוע</div>
+            <div class="description">הובלות, מוסכים, שיפוצים</div>
+            <button class="category-btn">מתחילים</button>
+        </div>
+        <div class="category-row2" (click)="onClickCategory()">
+            <img src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/commercial.svg">
+            <img class="img-hover" src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/commercial_active.svg" alt="">
+            <div class="category-header">נדל"ן מסחרי</div>
+            <div class="description">מחסנים, קליניקות, משרדים</div>
+            <button class="category-btn">מתחילים</button>
+        </div>
+        <div class="category-row2 category-jobs" (click)="onClickCategory()">
+            <img src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/drushim_new.svg">
+            <img class="img-hover" src="https://assets.yad2.co.il/personal/svg/subCategories_publish_icons/mainCategoriesIcons/newIcons/drushim_new_active.svg" alt="">
+            <div class="category-header">משרות</div>
+            <div class="description">הצעות עבודה</div>
+            <button class="category-btn">מתחילים</button>
+            <div class="title-jobs">חדש</div>
+        </div>
+    </div>
+    <div class="categorys">
+        <div class="category-row3">
+            <div class="category-header">ריהוט</div>
+        </div>
+        <div class="category-row3">
+            <div class="category-header">אופנה וטיפוח</div>
+        </div>
+        <div class="category-row3">
+            <div class="category-header">חיות מחמד</div>
+        </div>
+        <div class="category-row3">
+            <div class="category-header">לתינוק ולילד</div>
+        </div>
+        <div class="category-row3">
+            <div class="category-header">סלולר</div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="popupWindow" class="background">
+    <div class="container-popup-modal">
+        <div class="container-img">
+            <img class="home-img" src="assets/images/home.png" alt="">
+        </div>
+        <button class="close-btn" (click)="onClickCloseModal()">
+            <img src="assets/images/x.png" alt="">
+        </button>
+        <div class="text">איזה סוג מודעה תרצו לפרסם?</div>
+        <div class="btn-container">
+            <button (click)="onClickPublishPrivatePost(isUserClickRealEstateCategory)">פרטי</button>
+            <button>מתווך</button>
+        </div>
+    </div>
+</div>

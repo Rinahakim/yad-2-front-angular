@@ -1,0 +1,10 @@
+<div>
+    <h4>{{ title }}</h4>
+    <div class="options-container">
+    <button *ngFor="let option of options"
+            (click)="onSelect(option)"
+            [class.selected]="selectedOption() === option">
+        {{ option }}
+    </button>
+    </div>
+</div>

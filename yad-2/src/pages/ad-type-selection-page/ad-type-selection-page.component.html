@@ -1,0 +1,109 @@
+<div class="page-container">
+    <app-header></app-header>
+    <div class="container">
+        <app-ad-type-selection-component  
+        [showDoneIcon]="!openWindow[0]"
+        [ngClass]="{'close-container': !openWindow[0]}"
+        (isAllWindowsOpen)="updateWindows($event)"
+        (eventManagement)="eventManagementOperation($event)">
+            <div *ngIf="!openWindow[0]">
+                <div class="done-icon">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="step-counter_checkMarkIcon__nMGWf"><path d="M9.874 15.196l7.93-8.733a1.25 1.25 0 111.85 1.68l-8.306 9.148a2 2 0 01-2.985-.026l-4.032-4.602a1.25 1.25 0 111.88-1.648l3.663 4.181z" fill="currentColor"></path></svg>
+                </div>
+                <div class="edit-icon" (click)="onClickEditBtnOpenContainer(0)">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+                </div>
+            </div>
+        </app-ad-type-selection-component>
+
+        <app-property-container-two *ngIf="isAllWindowsOpen" 
+        [showDoneIcon]="!openWindow[1] && isLargerLevelOpen(1)"
+        [currentWindClose] = "!openWindow[1]"
+        (eventManagement)="eventManagementOperation($event)" 
+        [ngClass]="{'close-container': !openWindow[1]}">
+            <div *ngIf="!openWindow[1] && isLargerLevelOpen(1)">
+                <div class="done-icon">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="step-counter_checkMarkIcon__nMGWf"><path d="M9.874 15.196l7.93-8.733a1.25 1.25 0 111.85 1.68l-8.306 9.148a2 2 0 01-2.985-.026l-4.032-4.602a1.25 1.25 0 111.88-1.648l3.663 4.181z" fill="currentColor"></path></svg>
+                </div>
+                <div class="edit-icon" (click)="onClickEditBtnOpenContainer(1)">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+                </div>
+            </div>
+        </app-property-container-two>
+
+        <app-property-container-three *ngIf="isAllWindowsOpen"
+        [showDoneIcon]="!openWindow[2] && isLargerLevelOpen(2)"
+        [currentWindClose] = "!openWindow[2]"
+        (eventManagement)="eventManagementOperation($event)" 
+        [ngClass]="{'close-container': !openWindow[2]}">
+            <div *ngIf="!openWindow[2] && isLargerLevelOpen(2)">
+                <div class="done-icon">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="step-counter_checkMarkIcon__nMGWf"><path d="M9.874 15.196l7.93-8.733a1.25 1.25 0 111.85 1.68l-8.306 9.148a2 2 0 01-2.985-.026l-4.032-4.602a1.25 1.25 0 111.88-1.648l3.663 4.181z" fill="currentColor"></path></svg>
+                </div>
+                <div class="edit-icon" (click)="onClickEditBtnOpenContainer(2)">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+                </div>
+            </div>
+        </app-property-container-three>
+
+        <app-property-container-four *ngIf="isAllWindowsOpen"
+        [showDoneIcon]="!openWindow[3] && isLargerLevelOpen(3)"
+        [currentWindClose] = "!openWindow[3]"
+        (eventManagement)="eventManagementOperation($event)" 
+        [ngClass]="{'close-container': !openWindow[3]}">
+            <div *ngIf="!openWindow[3] && isLargerLevelOpen(3)">
+                <div class="done-icon">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="step-counter_checkMarkIcon__nMGWf"><path d="M9.874 15.196l7.93-8.733a1.25 1.25 0 111.85 1.68l-8.306 9.148a2 2 0 01-2.985-.026l-4.032-4.602a1.25 1.25 0 111.88-1.648l3.663 4.181z" fill="currentColor"></path></svg>
+                </div>
+                <div class="edit-icon" (click)="onClickEditBtnOpenContainer(3)">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+                </div>
+            </div>
+        </app-property-container-four>
+
+        <app-property-container-five *ngIf="isAllWindowsOpen"
+        [showDoneIcon]="!openWindow[4] && isLargerLevelOpen(4)"
+        [currentWindClose] = "!openWindow[4]"
+        (eventManagement)="eventManagementOperation($event)" 
+        [ngClass]="{'close-container': !openWindow[4]}">
+            <div *ngIf="!openWindow[4] && isLargerLevelOpen(4)">
+                <div class="done-icon">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="step-counter_checkMarkIcon__nMGWf"><path d="M9.874 15.196l7.93-8.733a1.25 1.25 0 111.85 1.68l-8.306 9.148a2 2 0 01-2.985-.026l-4.032-4.602a1.25 1.25 0 111.88-1.648l3.663 4.181z" fill="currentColor"></path></svg>
+                </div>
+                <div class="edit-icon" (click)="onClickEditBtnOpenContainer(4)">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+                </div>
+            </div>
+        </app-property-container-five>
+
+        <app-property-container-six *ngIf="isAllWindowsOpen"
+        [showDoneIcon]="!openWindow[5] && isLargerLevelOpen(5)"
+        [currentWindClose] = "!openWindow[5]"
+        (eventManagement)="eventManagementOperation($event)"
+        [ngClass]="{'close-container': !openWindow[5]}">
+            <div *ngIf="!openWindow[5] && isLargerLevelOpen(5)">
+                <div class="done-icon">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="step-counter_checkMarkIcon__nMGWf"><path d="M9.874 15.196l7.93-8.733a1.25 1.25 0 111.85 1.68l-8.306 9.148a2 2 0 01-2.985-.026l-4.032-4.602a1.25 1.25 0 111.88-1.648l3.663 4.181z" fill="currentColor"></path></svg>
+                </div>
+                <div class="edit-icon" (click)="onClickEditBtnOpenContainer(5)">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+                </div>
+            </div>
+        </app-property-container-six>
+
+        <app-property-container-seven *ngIf="isAllWindowsOpen"
+        [showDoneIcon]="!openWindow[6] && isLargerLevelOpen(6)"
+        [currentWindClose] = "!openWindow[6]"
+        (eventManagement)="eventManagementOperation($event)"
+        [ngClass]="{'close-container': !openWindow[6]}">
+            <div *ngIf="!openWindow[6] && isLargerLevelOpen(6)">
+                <div class="done-icon">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="step-counter_checkMarkIcon__nMGWf"><path d="M9.874 15.196l7.93-8.733a1.25 1.25 0 111.85 1.68l-8.306 9.148a2 2 0 01-2.985-.026l-4.032-4.602a1.25 1.25 0 111.88-1.648l3.663 4.181z" fill="currentColor"></path></svg>
+                </div>
+                <div class="edit-icon" (click)="onClickEditBtnOpenContainer(6)">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+                </div>
+            </div>
+        </app-property-container-seven>
+    </div>
+</div>

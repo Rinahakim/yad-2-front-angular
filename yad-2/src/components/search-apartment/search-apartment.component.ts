@@ -147,4 +147,7 @@ export class SearchApartmentComponent implements OnInit {
   onClickMoreFilters(){
     this.popUpModalMore = true;
   }
+  onClickClosePopUpModal(){
+    this.popUpModalMore = false;
+  }
 }

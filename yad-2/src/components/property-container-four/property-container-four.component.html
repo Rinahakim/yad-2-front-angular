@@ -1,0 +1,88 @@
+<div class="container" [ngClass]="{'container-close': showDoneIcon}">
+    <div class="header">
+        <div *ngIf="!showDoneIcon"
+        [ngClass]="{'level-number-close': !showDoneIcon && currentWindClose}">4</div>
+        <ng-content></ng-content>
+        <div class="text-header">תשלומים, תאריכים ועוד</div>
+        <div *ngIf="showDoneIcon" class="more-information">
+            מס תשלומים: 
+            {{formContainer4.get('Payment')?.value}}
+        </div>
+    </div>
+    <div class="note">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11.977 5.73c-3.044 0-5.242 2.248-5.591 4.662-.218 1.61.308 3.178 1.399 4.365a5.494 5.494 0 011.485 3.771l-.004 2.203c0 .89.742 1.61 1.66 1.61h2.142c.92 0 1.662-.72 1.662-1.61l.004-2.203c0-1.438.48-2.755 1.399-3.686a5.211 5.211 0 001.53-3.686c-.005-3.012-2.585-5.426-5.686-5.426zm1.92 15a.773.773 0 01-.788.765h-2.141a.77.77 0 01-.788-.764v-.976h3.713v.976h.004zm1.624-6.481c-1.09 1.101-1.661 2.625-1.661 4.28v.381h-3.712v-.382c0-1.569-.657-3.133-1.748-4.32-.96-1.016-1.354-2.329-1.181-3.686C7.526 8.49 9.434 6.58 11.98 6.58c2.667 0 4.808 2.076 4.808 4.576a4.407 4.407 0 01-1.268 3.093z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M6.06 10.345C6.43 7.775 8.761 5.4 11.976 5.4c3.267 0 6.011 2.546 6.016 5.755 0 1.445-.56 2.841-1.626 3.92-.848.858-1.303 2.087-1.303 3.453l-.004 2.203c0 1.082-.9 1.94-1.992 1.94h-2.141c-1.091 0-1.991-.858-1.991-1.94l.004-2.203a5.165 5.165 0 00-1.395-3.545l-.003-.003c-1.155-1.256-1.714-2.921-1.483-4.632v-.003zm3.21 8.183l-.004 2.203c0 .89.742 1.61 1.66 1.61h2.142c.92 0 1.662-.72 1.662-1.61l.004-2.203c0-1.438.48-2.755 1.399-3.686a5.211 5.211 0 001.53-3.686c-.005-3.012-2.585-5.426-5.686-5.426-3.044 0-5.242 2.248-5.591 4.662-.218 1.61.308 3.178 1.399 4.365a5.494 5.494 0 011.485 3.771zm4.293 2.261v-.704H10.51v.646a.44.44 0 00.458.434h2.141c.243 0 .425-.17.454-.376zm.258.272a.786.786 0 01-.712.434h-2.141a.77.77 0 01-.788-.764v-.976h3.713v.976h.004a.762.762 0 01-.076.33zM8.4 14.208c1.091 1.187 1.748 2.751 1.748 4.32v.382h3.712v-.382c0-1.654.57-3.178 1.661-4.28a4.407 4.407 0 001.268-3.092c0-2.5-2.142-4.576-4.808-4.576-2.547 0-4.455 1.91-4.762 3.942-.173 1.357.221 2.67 1.181 3.686zm-.855-3.64c.286-1.876 2.06-3.658 4.436-3.658 2.498 0 4.478 1.942 4.478 4.246a4.077 4.077 0 01-1.173 2.861c-1.16 1.171-1.756 2.782-1.756 4.511v.052h-3.053v-.052c0-1.659-.692-3.301-1.834-4.543l-.003-.004c-.888-.94-1.254-2.15-1.095-3.414zM11.941.216a.75.75 0 01.75.75v1.419a.75.75 0 01-1.5 0V.965a.75.75 0 01.75-.75zM3.98 3.562a.75.75 0 011.06 0l1.004 1.004a.75.75 0 01-1.06 1.06L3.98 4.623a.75.75 0 010-1.06zm15.965 0a.75.75 0 010 1.061l-1.003 1.003a.75.75 0 01-1.06-1.06l1.002-1.004a.75.75 0 011.061 0zM1.52 11.406a.75.75 0 01.75-.75h1.419a.75.75 0 010 1.5H2.27a.75.75 0 01-.75-.75zm18.041 0a.75.75 0 01.75-.75h1.419a.75.75 0 010 1.5h-1.419a.75.75 0 01-.75-.75z" fill="currentColor"></path></svg>
+        <div>
+            <div>מודעות שעולות עם מחירים לא עגולים מוכרות מהר יותר</div>
+            <div>גם לנו היה קשה להאמין!</div>
+        </div>
+    </div>
+    <div class="fields">
+        <form [formGroup]="formContainer4" (ngSubmit) = onSubmit() class="form-container4">
+            <input type="text" formControlName="Payment" placeholder="בחירת מספר התשלומים"
+            (click)="onClickInputPayment()" readonly [value]="selectedPaymentNumber">
+            <div class="svg" [ngClass]="{'close-icon': rotateIcon, 'open-icon': !rotateIcon}">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.695 8.675a.75.75 0 011.13.98l-.073.085-6.18 6.136a.75.75 0 01-.976.07l-.084-.074L5.41 9.727a.75.75 0 01.98-1.13l.084.074 5.574 5.612 5.647-5.608z" fill="currentColor"></path></svg>
+            </div>
+            <div class="payment-container" *ngIf="isOpenPaymentWind">
+                <div *ngFor="let paymentNumber of PaymentOptions"
+                (click)="onSelectPayment(paymentNumber)" class="payment-option">
+                    {{paymentNumber}}
+                    <svg *ngIf="paymentNumber === selectedPaymentNumber" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.938 5.492a.75.75 0 011.172.929l-.069.087L9.804 18.724a1.752 1.752 0 01-2.565.012l-.104-.122-4.727-6.068a.75.75 0 011.11-1.004l.074.082 4.727 6.069a.25.25 0 00.35.043l.031-.028L19.938 5.492z" fill="currentColor"></path></svg>
+                </div>
+            </div>
+            <div class="field">
+                <label for="buildingCommittee">ועד בית</label>
+                <input type="text" id = "buildingCommittee" formControlName= "BuildingCommittee" placeholder="תשלום לועד בית">
+            </div>
+            <div class="field">
+                <label for="propertyTax">ארנונה לחודשיים</label>
+                <input type="text" id = "propertyTax" formControlName= "PropertyTax" placeholder="סכום ארנונה לתשלום">
+            </div>
+            <hr>
+            <div class="field">
+                <label for="builtArea">מ"ר בנוי</label>
+                <input type="text" id = "builtArea" formControlName= "BuiltArea" placeholder='כמה מ"ר יש בנכס'>
+            </div>
+            <div class="field">
+                <label for="gardenArea">מ"ר גינה</label>
+                <input type="text" id = "gardenArea" formControlName= "GardenArea">
+            </div>
+            <div class="field">
+                <label for="totalSize">גודל במ"ר סך הכל*</label>
+                <input type="text" id = "totalSize" formControlName= "TotalSize">
+            </div>
+            <div class="field">
+                <label for="price">מחיר</label>
+                <input type="text" id = "price" formControlName= "Price" placeholder="סכום מינימלי 100">
+                <i class="text-field-icon">₪</i>
+            </div>
+            <div class="field field-not-allowed">
+                <label for="pricePerMeter">מחיר למטר</label>
+                <input type="text" id = "pricePerMeter" formControlName= "PricePerMeter" readonly>
+                <i class="text-field-icon">₪</i>
+            </div>
+            <div class="field">
+                <label for="entryDate">תאריך כניסה</label>
+                <div class="flex-row">
+                    <input type="date" id = "entryDate" formControlName= "EntryDate" placeholder="mm/ dd/ yyyy">
+                    <div class="flex-row">
+                        <input type="checkbox" class="checkbox">
+                        <span>מיידי</span>
+                    </div>
+                    <div class="flex-row">
+                        <input type="checkbox" class="checkbox">
+                        <span>גמיש</span>
+                    </div>
+                    <div class="flex-row">
+                        <input type="checkbox" class="checkbox">
+                        <span>לטווח ארוך</span>
+                    </div>
+                </div>
+            </div>
+            <div class="submit-back-btns">
+                <button type="button" (click)="onClickBtnBack()">חזרה</button>
+                <button [disabled]="this.formContainer4.invalid">לשלב הבא</button>
+            </div>
+        </form>
+    </div>
+</div>

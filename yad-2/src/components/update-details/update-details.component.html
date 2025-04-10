@@ -1,0 +1,72 @@
+<div class="container-modal">
+    <p class="header">עדכון פרטים</p>
+    <div class="container">
+        <form [formGroup]="form" (ngSubmit) = onSubmit() class="form-container">
+            <div class="profile-container">
+                <div class="update-header">פרטים אישיים</div>
+                <div class="field field1">
+                    <label for="firstName">שם פרטי*</label>
+                    <input id="firstName" formControlName= "FirstName">
+                </div>
+                <div class="field field2">
+                    <label for="lastName">שם משפחה*</label>
+                    <input id="lastName" formControlName= "LastName">
+                </div>
+                <div class="field field3">
+                    <label for="phone">טלפון נייד*</label>
+                    <input id="phone" formControlName= "Phone">
+                </div>
+                <div class="field field4">
+                    <label for="email">מייל*</label>
+                    <input id="email" formControlName= "Email">
+                </div>
+                <div class="field field5">
+                    <label for="date">תאריך לידה</label>
+                    <input type="date" id="date" formControlName= "Date">
+                </div>
+                <div class="note">
+                    <span>
+                        <p>אולי נצליח להפתיע אותך עם</p>
+                        <p>ברכה ביום ההולדת!</p>
+                    </span>
+                    <div>
+                        <img class="img1" src="https://www.yad2.co.il/personal/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fpersonal-area%2Fimages%2FStar.png&w=16&q=75" alt="">
+                        <img class="img2" src="https://www.yad2.co.il/personal/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fpersonal-area%2Fimages%2FStar.png&w=16&q=75" alt="">
+                        <img class="img3" src="https://www.yad2.co.il/personal/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fpersonal-area%2Fimages%2FStar.png&w=16&q=75" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="addr-container">
+                <div class="addr-header">כתובת</div>
+                <div class="sub-title-addr">כדאי למלא את הכתובת, כדי שנוכל לחבר אותה אוטומטית בפעם הבאה שתפרסמו מודעה</div>
+                <div class="city">
+                    <label for="city">ישוב/עיר*</label>
+                    <input id="city" formControlName= "City">
+                </div>
+                <div class="street-container">
+                    <div class="street">
+                        <label for="street">רחוב*</label>
+                        <input id="street" formControlName= "Street">
+                    </div>
+                    <div class="number">
+                        <label for="number">מספר בית*</label>
+                        <input id="number" formControlName= "Number">
+                    </div>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button type="reset" (click)="onClickCancel()">ביטול</button>
+                <button type="submit" [disabled]="form.invalid"
+                [ngClass]="{'disabled-btn': form.invalid, 'save-btn': form.valid}">שמירה</button>
+            </div>
+        </form>
+        <div class="image-profile">
+            <div class="border-image-profile">
+                שם
+            </div>
+            <button class="edit-image-btn">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+            </button>
+        </div>
+    </div>
+</div>    

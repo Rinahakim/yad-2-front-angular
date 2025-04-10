@@ -53,6 +53,12 @@
     position: absolute;
     right: 90px;
 }
+.error-message-already-registered{
+    color: rgb(255,42,43);
+    position: absolute;
+    right: 100px;
+    top: 360px;
+}
 
 .field input.error{
     border: 1px solid rgb(255,42,43) !important;
@@ -146,6 +152,80 @@
     z-index: 90;
     cursor: pointer;
 }
+.continue-registration-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 3px 10px 0 rgb(0, 0, 0, .1);
+    padding: 35px 35px 15px;
+    gap: 20px;
+    width: 480px;
+    height: 480px;
+}
+.header-continue-registration{
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.text{
+    width: 160px;
+    font-size: 0.9rem;
+}
+input{
+    width: 90%;
+    height: 40px;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgb(204, 204, 204);
+}
+.submit-btn{
+    margin-top: 30px;
+    color: #fff;
+    background-color: rgb(255, 113, 0);
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 50px;
+    width: 90%;
+    border: none;
+}
+.code-error{
+    border: 1px solid red;
+}
+.code-error-massage{
+    color: red;
+}
+.link-to-terms,
+.link-to-code-again{
+    color: rgb(255, 113, 0);
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    background-color: #fff;
+}
+.note-massage{
+    color: rgba(128, 128, 128, 0.845);
+}
+.checkbox-container{
+    width: 70%;
+}
+.checkbox-container>*{
+    display: inline;
+}
+.checkbox-container input{
+    width: 16px;
+    height: 16px;
+}
+.error-message-checkbox{
+    color: red;
+}
+.error-checkbox{
+    outline: 1px solid red;
+    outline-offset: -1px;
+}
 @media(max-width: 880px){
     :host{
         width: 100%;
@@ -158,6 +238,10 @@
         align-items: center;
         padding: 0;
         padding-top: 50px;
+    }
+    .continue-registration-container{
+        width: 100%;
+        height: 860px;
     }
     .field{
         width: 80%;

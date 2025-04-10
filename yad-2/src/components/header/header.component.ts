@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
+import { UserInformationService } from '../../services/user-information.service';
 
 @Component({
   selector: 'app-header',
   standalone: false,
   
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit{
   is_amborger_list_open !: boolean;
@@ -29,8 +30,14 @@ export class HeaderComponent implements OnInit{
   hoverProfessionals !:boolean;
   isLoggedin !:boolean;
   isClosingModel !:boolean;
+  userName !: string;
+  firstName !: string;
+  nameToProfile !: string;
+  openUserMenu : boolean = false;
+  @Output() toggleListWindEvent = new EventEmitter<boolean>();
 
-  constructor(private router : Router, private authenticationService: AuthenticationService){}
+  constructor(public router : Router, private authenticationService: AuthenticationService,
+    private userInformationService: UserInformationService){}
   ngOnInit(): void {
     this.isLoggedin = this.authenticationService.isLoggedIn();
     this.is_amborger_list_open = false;
@@ -50,10 +57,30 @@ export class HeaderComponent implements OnInit{
     this.hoverAnimals = false;
     this.hoverProfessionals = false;
     this.hoverRealEstate = false;
+    if(this.isLoggedin){
+      this.extractionName();
+    }
+    if(this.router.url !== '/account'){
+      localStorage.removeItem('toOpenUpdateDetailsWind');
+      localStorage.removeItem('isOpenListWindInAccount');
+    }
+  }
+  extractionName(){
+    this.userInformationService.user$.subscribe(user => {
+      if (user) {
+        this.userName = `${user.firstName} ${user.lastName}`;
+        this.firstName = user.firstName;
+        this.nameToProfile = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
+      }
+    });
+    this.userInformationService.getUserInformation().subscribe();
   }
   onClickAmborger(){
     this.is_amborger_list_open = true;
     this.isClosingModel = false;
+  }
+  onClickAccount(){
+    this.router.navigate(['/account']);
   }
   onClickX(){
     this.isClosingModel = true;
@@ -62,6 +89,27 @@ export class HeaderComponent implements OnInit{
       this.isClosingModel = false;
     }, 500);
     // this.is_amborger_list_open = false;
+  }
+  onClickLogo(){
+    this.router.navigate(['/homepage']);
+  }
+  onClickAmborgerBtnInAccount(){
+    // localStorage.setItem('isOpenListWindInAccount', 'true');
+    this.toggleListWindEvent.emit(true);
+  }
+  onClickBack()
+  {
+    this.router.navigate(['/publishing-page']);
+  }
+  onClickAmborgerBtnInPublishPrivatePost(){
+    this.openUserMenu = true;
+  }
+  onClickPublishingBtn(){
+    if(this.isLoggedin){
+      this.router.navigate(['/publishing-page']);
+    }else{
+      this.router.navigate(['/login']);
+    }
   }
   getHoverSomeCategory(){
     return this.hoverCarInTablet || this.hoverRealEstateInTablet || this.hoverYad2InTablet

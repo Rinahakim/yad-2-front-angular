@@ -30,9 +30,28 @@ import { RealEstateCategoryComponent } from '../components/header/real-estate-ca
 import { ApartmentsForRentComponent } from '../pages/apartments-for-rent/apartments-for-rent.component';
 import { SearchApartmentComponent } from '../components/search-apartment/search-apartment.component';
 import { ApartmentPage2Component } from '../components/apartment-page2/apartment-page2.component';
+import { AccountComponent } from '../pages/account/account.component';
+import { AccountListComponent } from '../components/account-list/account-list.component';
+import { UpdateDetailsComponent } from '../components/update-details/update-details.component';
+import { PublishingPageComponent } from '../pages/publishing-page/publishing-page.component';
+import { PublishingCategoryComponent } from '../components/publishing-category/publishing-category.component';
+import { AdTypeSelectionComponentComponent } from '../components/ad-type-selection-component/ad-type-selection-component.component';
+import { AdTypeSelectionPageComponent } from '../pages/ad-type-selection-page/ad-type-selection-page.component';
+import { UserMenuComponentComponent } from '../components/user-menu-component/user-menu-component.component';
+import { SelectionComponent } from '../components/selection/selection.component';
+import { PropertyContainerTwoComponent } from '../components/property-container-two/property-container-two.component';
+import { PropertyContainerThreeComponent } from '../components/property-container-three/property-container-three.component';
+import { PropertyContainerFourComponent } from '../components/property-container-four/property-container-four.component';
+import { PropertyContainerFiveComponent } from '../components/property-container-five/property-container-five.component';
+import { PropertyContainerSixComponent } from '../components/property-container-six/property-container-six.component';
+import { PropertyContainerSevenComponent } from '../components/property-container-seven/property-container-seven.component';
 
+import { UserInformationService } from '../services/user-information.service';
 import { ApartmentServiceService } from '../services/apartment-service.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { UpdatedDetailsUserService } from '../services/updated-details-user.service';
+
+import { MyCustomPipePipe } from '../custom-pipe/my-custom-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +79,23 @@ import { AuthenticationService } from '../services/authentication.service';
     RealEstateCategoryComponent,
     ApartmentsForRentComponent,
     SearchApartmentComponent,
-    ApartmentPage2Component
+    ApartmentPage2Component,
+    AccountComponent,
+    AccountListComponent,
+    UpdateDetailsComponent,
+    PublishingPageComponent,
+    PublishingCategoryComponent,
+    AdTypeSelectionPageComponent,
+    AdTypeSelectionComponentComponent,
+    UserMenuComponentComponent,
+    SelectionComponent,
+    PropertyContainerTwoComponent,
+    PropertyContainerThreeComponent,
+    PropertyContainerFourComponent,
+    PropertyContainerFiveComponent,
+    PropertyContainerSixComponent,
+    PropertyContainerSevenComponent,
+    MyCustomPipePipe
   ],
   imports: [
     BrowserModule,
@@ -68,13 +103,16 @@ import { AuthenticationService } from '../services/authentication.service';
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     provideClientHydration(withEventReplay()),
     ApartmentServiceService,
-    AuthenticationService
+    AuthenticationService,
+    UserInformationService,
+    UpdatedDetailsUserService,
   ],
+  exports: [MyCustomPipePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

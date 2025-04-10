@@ -1,0 +1,211 @@
+:host{
+    width: 100%;
+    height: 100%;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 150px;
+    font-size: 1.5rem;
+    color: #363636;
+    gap: 35px;
+}
+.categorys{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    width: 1020px;
+}
+.category-row3,
+.category-row2,
+.category{
+    box-shadow: 0 3px 9px rgba(0,0,0,.09);
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .category-header{
+        font-size: 20px;
+        font-weight: 600;
+        color: #363636;
+    }
+    .description{
+        color: #999;
+        font-size: 16px;
+    }
+}
+.category{
+    width: 323.33px;
+    height: 225px;
+}
+.category-row2{
+    width: 236.25px;
+    height: 225px;
+}
+.category-row3{
+    width: 188.64px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.category-row3:hover{
+    border: 1px solid #b2b2b2;
+}
+.category-btn{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 110px;
+    border-radius: 30px;
+    background-color: #ff7100;
+    margin: 9px auto 0 auto;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+.img-hover{
+    display: none;
+}
+.category:hover,
+.category-row2:hover{
+    .description{
+        display: none;
+    }
+    .category-btn{
+        display: flex;
+    }
+    img{
+        display: none;
+    }
+    .img-hover{
+        display: block;
+    }
+}
+.yad2-category{
+    border: 1px solid #0fca80;
+    position: relative;
+}
+.title-yad2{
+    position: absolute;
+    background-color: #0fca80;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 3px 12px;
+    top: -10px;
+    right: 25px;
+}
+.category-jobs{
+    position: relative;
+}
+.title-jobs{
+    position: absolute;
+    background-color: #0fca80;
+    color: #fff;
+    font-weight: 600;
+    padding: 3px 12px;
+    top: -8px;
+    font-size: 12px;
+    border-radius: 4px;
+    right: 10px;
+}
+
+.background{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #0000005f;
+    z-index: 900;
+    animation: fading .8s ease-in-out;
+    .container-popup-modal{
+        width: 290px;
+        height: 227px;
+        background-color: #fff;
+        border-radius: 5px;
+        position: fixed;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        .container-img{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: -20px;
+            padding: 5px;
+            box-shadow: 0 2px 4px 0 rgba(12, 0, 51, .1);
+        }
+        .close-btn{
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 28px;
+            height: 28px;
+            color: #000;
+            border: none;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .close-btn>:first-child{
+            width: 20px;
+            height: 19px;
+        }
+        .text{
+            font-size: 18px;
+            color: #000;
+        }
+        .btn-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-container>*{
+            color: #000;
+            font-size: 24px;
+            border: none;
+            border-radius: 4px;
+            width: 110px;
+            height: 79px;
+            cursor: pointer;
+        }
+        .btn-container >*:hover{
+            background-color: #ccc;
+        }
+    }
+}
+@keyframes fading{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

@@ -1,0 +1,228 @@
+.container{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+    height: 65px;
+}
+.profile-btn{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border: none;
+    background-color: #fff;
+    gap: 5px;
+    height: 100%;
+    position: relative;
+}
+.profile-btn:hover{
+    background-color: rgb(248,248,248);
+    .options-container{
+        display: block;
+    }
+}
+.profile-btn>:first-child{
+    border: 1px solid rgb(255, 133, 0);
+    color: rgb(255, 133, 0);
+    background-color: rgb(255,241,229);
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+}
+.first-name{
+    font-size: 1rem;
+}
+.options-container{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -80%;
+    background-color: #fff;
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.15);
+    width: 200.72px;
+}
+.option{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px 0 30px;
+    line-height: 50px;
+    cursor: pointer;
+    font-weight: 300;
+    color: rgb(54,54,54);
+    font-size: 14px;
+    svg{
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+}
+.options-container>:last-child{
+    border-top: 1px solid rgb(238,238,238);
+}
+.option:hover{
+    background-color: rgb(248,248,248);
+}
+.exit-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    svg{
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+}
+.connection-btn,
+.exit-btn{
+    font-size: 0.875rem;
+    padding: 0 18px;
+    min-height: 36px;
+    color: rgb(54,54,54);
+    background-color: #fff;
+    border: 1px solid rgb(204,204,204);
+    border-radius: 30px;
+    cursor: pointer;
+}
+.connection-btn:hover,
+.exit-btn:hover{
+    border-color: rgb(153,153,153);
+}
+.logout-link,
+.close-icon,
+.text,
+.user-name,
+.edit-profile-in-mobile,
+.personal-details-container,
+.show-on-mobile{
+    display: none;
+}
+@media(max-width: 1365px) {
+    .first-name{
+        display: none;
+    }
+}
+@media(max-width: 880px) {
+   .container{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: #fff;
+        height: 100%;
+        width: 315px;
+        display: block;
+        box-shadow: 0 3px 10px 0 rgba(0,0,0,.15);
+    }
+    .profile-btn{
+        position: static;
+        margin-top: 50px;
+        margin-right: 10px;
+        height: auto;
+    }
+    .profile-btn>*{
+        z-index: 2;
+    }
+    .profile-btn>:first-child{
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        margin-left: 10px;
+    }
+    .profile-btn:hover{
+        background-color: #fff;
+    }
+    .options-container{
+        display: block;
+        position: absolute;
+        top: 170px;
+        right: 0;
+        background-color: #fff;
+        box-shadow: none;
+        width: 100%;
+    }
+    .on-mobile{
+        display: none;
+    }
+    .show-on-mobile{
+        display: flex;
+        padding-bottom: 5px;
+    }
+    .text{
+        display: block;
+        border-top: 1px solid rgb(238,238,238);
+        text-align: start;
+        padding-right: 20px;
+        margin-top: 10px;
+        font-size: large;
+        height: 100%;
+        color: rgb(54,54,54);
+    }
+    .connection-btn,
+    .exit-btn{
+        display: inline-flex;
+        justify-content: start;
+        align-items: center;
+        z-index: 2;
+    }
+    .connection-btn:hover,
+    .exit-btn:hover{
+        border: 1px solid rgb(204,204,204);
+    }
+    .exit-btn{
+        left: 40%;
+        position: absolute;
+        top: 120px;
+    }
+    .connection-btn{
+        position: absolute;
+        top: 120px;
+    }
+    .user-name{
+        display: block;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    .edit-profile-in-mobile{
+        display: block;
+        cursor: pointer;
+        text-decoration:underline;
+        font-size: 0.875rem;
+        color: rgb(54,54,54);
+        margin-top: 5px;
+    }
+    .close-icon{
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 2;
+        svg{
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .logout-link{
+        display: block;
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        cursor: pointer;
+        color: rgb(153,153,153);
+        z-index: 2;
+    }
+    .personal-details-container{
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 315px;
+        height: 140px;
+        background-color: #f8f8f8;
+        z-index: 1;
+    }
+}

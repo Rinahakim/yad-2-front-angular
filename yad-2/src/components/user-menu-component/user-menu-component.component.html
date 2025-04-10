@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="personal-details-container"></div>
+    <div class="close-icon" (click)="onClickCloseMenu()">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="responsive-header-grid_close-icon__nDfML"><path d="M16.3 8.05a.458.458 0 01.65.65l-3.802 3.8 3.801 3.8a.458.458 0 01.059.577l-.059.072a.458.458 0 01-.648 0L12.5 13.148l-3.8 3.801a.458.458 0 01-.577.059l-.072-.059a.458.458 0 010-.648l3.8-3.801-3.8-3.8a.458.458 0 01-.059-.577l.059-.072a.458.458 0 01.648 0l3.8 3.8z" fill="currentColor" fill-rule="nonzero"></path></svg>
+    </div>
+    <div class="logout-link" (click)="onClickLogout()">התנתקות</div>
+    <button (click)="onClickProfileBtn()" class="profile-btn">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g>
+                <text x="12" y="16" text-anchor="middle" font-size="10" fill="#ff7100">{{ nameToProfile }}</text> 
+            </g>
+        </svg>
+        <div>
+            <div class="user-name">{{userName}}</div>
+            <div class="edit-profile-in-mobile">עריכת פרופיל</div>
+        </div>
+        <div class="first-name">{{firstName}}</div>
+        <div class="options-container">
+            <div class="option on-mobile" (click)="onClickEditProfile()">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="option-icon_optionIcon__q0NHw option-icon_removeFromMobile__JUQUm"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7 4c.5 0 .979.198 1.332.55l2.01 2.008a1.88 1.88 0 01.001 2.66l-9.236 9.247a.747.747 0 01-.327.191l-5.032 1.41a.747.747 0 01-.92-.918l1.413-5.025a.746.746 0 01.19-.325L14.37 4.55C14.722 4.198 15.2 4 15.7 4zm-2.806 4.137l-6.568 6.576-1.002 3.56 3.564-1 6.557-6.565-2.551-2.571zM15.7 5.491a.392.392 0 00-.276.114L13.77 7.261l2.551 2.571 1.667-1.668a.392.392 0 000-.552l-2.01-2.007a.391.391 0 00-.277-.114z" fill="currentColor"></path></svg>
+                <span>עריכת פרופיל</span>
+            </div>
+            <div class="option">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="option-icon_optionIcon__q0NHw"><path d="M10.42 4.368L8.678 8.023a.25.25 0 01-.193.14l-4.015.53a1.75 1.75 0 00-.976 3.004l2.937 2.788a.25.25 0 01.073.226l-.737 3.982a1.75 1.75 0 002.556 1.857l3.559-1.932a.25.25 0 01.238 0l3.56 1.932a1.75 1.75 0 002.555-1.857l-.738-3.982a.25.25 0 01.074-.226l2.937-2.788a1.75 1.75 0 00-.976-3.005l-4.015-.529a.25.25 0 01-.193-.14L13.58 4.368a1.75 1.75 0 00-3.159 0zm1.688.528a.25.25 0 01.118.118l1.743 3.655a1.75 1.75 0 001.351.981l4.015.53a.25.25 0 01.14.429l-2.938 2.788a1.75 1.75 0 00-.515 1.587l.737 3.982a.25.25 0 01-.365.265l-3.56-1.931a1.75 1.75 0 00-1.669 0L7.606 19.23a.25.25 0 01-.365-.265l.737-3.982a1.75 1.75 0 00-.516-1.587l-2.936-2.788a.25.25 0 01.14-.43L8.68 9.65a1.75 1.75 0 001.35-.981l1.744-3.655a.25.25 0 01.334-.118z" fill="currentColor" stroke="currentColor"></path></svg>
+                <span>המודעות שלי</span>
+            </div>
+            <div class="option">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="option-icon_optionIcon__q0NHw"><path d="M15.332 5.107a7.818 7.818 0 00-9.865 3.445l2.11-.006a.75.75 0 11.004 1.5l-3.82.01a.75.75 0 01-.752-.748L3 5.488a.75.75 0 111.5-.003l.004 1.754C6.908 3.533 11.69 1.96 15.91 3.723a9.317 9.317 0 11-12.623 10.89.75.75 0 011.453-.371 7.817 7.817 0 0014.788 1.09 7.815 7.815 0 00-4.196-10.225z" fill="currentColor"></path><path d="M12.743 9.017a.75.75 0 00-1.493.102V14l.007.104a.75.75 0 00.234.447l2.418 2.231.087.07a.75.75 0 00.973-.113l.069-.087a.75.75 0 00-.112-.972l-2.177-2.01.001-4.551-.007-.102z" fill="currentColor"></path></svg>
+                <span>חיפושים אחרונים</span>
+            </div>
+            <div class="option" (click)="onClickToHomePage()">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="option-icon_optionIcon__q0NHw"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.14 3.505l-.168-.005-.163.01c-.43.042-.834.231-1.14.538l-6.621 6.619-.104.113c-.46.543-.567 1.3-.3 1.942l.062.134.072.128c.334.54.934.896 1.605.896h.324v1.423l-.002.1.003.037v3.178l.005.14A1.89 1.89 0 007.59 20.5h8.822l.14-.005.137-.015a1.891 1.891 0 001.606-1.862v-4.739h.324l.154-.005a1.887 1.887 0 001.585-1.152 1.89 1.89 0 00-.404-2.055l-6.62-6.62-.124-.113a1.882 1.882 0 00-1.07-.43zm-.146 1.552l-.06.008a.322.322 0 00-.112.048l-.048.04-6.62 6.62c-.107.108-.124.214-.068.349.047.113.116.176.226.194l.071.006h1.104a.781.781 0 01.772.681l.006.098v2.208l.002.028-.002.092v3.189c0 .161.107.288.257.318l.067.006h1.424v-3.633c0-.987.775-1.807 1.745-1.88l.14-.004h2.206c.987 0 1.806.774 1.879 1.744l.005.14v3.633h1.424a.316.316 0 00.317-.257l.007-.067V13.1a.782.782 0 01.681-.772l.098-.006h1.104c.152 0 .24-.064.296-.2.047-.113.043-.205-.021-.295l-.046-.053-6.621-6.62a.325.325 0 00-.169-.09l-.064-.007zm1.232 9.93h-2.45c-.198 0-.343.112-.376.272l-.007.072.007 3.61h3.216l-.007-3.61c0-.173-.12-.307-.302-.338l-.08-.007z" fill="currentColor"></path></svg>
+                <span>חזרה לאתר הראשי</span>
+            </div>
+            <div class="option on-mobile" (click)="onClickLogout()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32" class="option-icon_optionIcon__q0NHw option-icon_removeFromMobile__JUQUm"><path d="M9.867 4h12c1.031 0 1.867.836 1.867 1.867v21.334a1.867 1.867 0 01-1.867 1.867h-12A1.867 1.867 0 018 27.201V5.868c0-1.031.836-1.867 1.867-1.867zm0 1.867V27.2h12V5.867h-12zm9.157 12.8c.558 0 1.011.418 1.011.933s-.453.933-1.011.933h-2.013c-.558 0-1.011-.418-1.011-.933s.453-.933 1.011-.933h2.013z"></path></svg>
+                <span>התנתקות</span>
+            </div>
+            <div class="option show-on-mobile">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="option-icon_optionIcon__q0NHw"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 9.8a7.95 7.95 0 017.95-7.95h.6a7.95 7.95 0 017.95 7.95v.701a.8.8 0 01.75.799v3.9a.8.8 0 01-.75.799v.201a5.55 5.55 0 01-5.55 5.55h-.638a.799.799 0 01-.662.35h-1.6a.8.8 0 01-.8-.8v-.9a.8.8 0 01.8-.8h1.6a.8.8 0 01.786.65h.514a4.05 4.05 0 004.05-4.05V9.8a6.45 6.45 0 00-6.45-6.45h-.6A6.45 6.45 0 005.25 9.8V16h-1.5v-.002A.8.8 0 013 15.2v-3.9a.8.8 0 01.75-.799V9.8zm13.05 0a.8.8 0 00-.8.8v5.6a.8.8 0 00.8.8h.65a.8.8 0 00.8-.8v-5.6a.8.8 0 00-.8-.8h-.65zm-11.05.8a.8.8 0 01.8-.8h.65a.8.8 0 01.8.8v5.6a.8.8 0 01-.8.8h-.65a.8.8 0 01-.8-.8v-5.6z" fill="currentColor"></path></svg>
+                <span>שירות לקוחות</span>
+            </div>
+            <div class="text">פרסום מודעה חדשה</div>
+        </div>
+    </button>
+    <button class="connection-btn">צור קשר</button>
+    <button class="exit-btn">
+        <span>יציאה</span>
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.935 5.278a.75.75 0 01.085.982l-.066.078-4.903 5.077 5.146 5.328.066.078a.75.75 0 01-1.145.964l-5.11-5.29-5.109 5.29a.75.75 0 01-1.144-.964l.065-.078 5.146-5.328-4.903-5.077-.065-.078a.75.75 0 011.144-.964l4.866 5.04 4.867-5.04a.75.75 0 011.06-.018z" fill="currentColor"></path></svg>
+    </button>
+</div>

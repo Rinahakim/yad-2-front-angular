@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { SignupModel } from '../../models/signupModel';
 import { LoginModel } from '../../models/loginModel';
 import { Router } from '@angular/router';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-login-form',
@@ -14,16 +14,26 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit{
   form !: FormGroup;
+  formCompletingSignup !: FormGroup;
   submitted !: boolean;
+  submittedlastWindowToCompletingSignupModal = false;
   showPassword = false;
   showConfirmPassword = false;
   MatchPassword !: boolean;
   validPassword !:boolean;
   userNeedToSign !:boolean;
   inSignupModel !: boolean;
+  userAlreadyRegistered = false;
+  continueRegistrationModal = false;
+  timeLeft : number = 60;
+  private intervalId: any;
+  verificationCode: string = "";
+  isCodeNotValid = false; 
+  lastWindowToCompletingSignupModal = false;
   @Output() signupModelOpen = new EventEmitter<boolean>();
 
-  constructor(private authService: AuthenticationService, private router: Router){}
+  constructor(private authService: AuthenticationService, public router: Router,
+              private emailService: EmailService){}
   
   ngOnInit(): void {
     this.submitted = false;
@@ -43,7 +53,14 @@ export class LoginFormComponent implements OnInit{
     });    
     this.form.valueChanges.subscribe(() => {
       this.submitted = false;
-    });    
+    });   
+    
+    this.formCompletingSignup = new FormGroup({
+      FirstName: new FormControl('', Validators.required),
+      LastName: new FormControl('', Validators.required),
+      Phone: new FormControl('', Validators.required),
+      Terms: new FormControl(false, Validators.requiredTrue)
+    });
   }
   onSubmit(){
     if(this.form.valid){
@@ -58,15 +75,80 @@ export class LoginFormComponent implements OnInit{
     }
   }
   onSubmitSignup(){
-    const signupModel: SignupModel = {
+    const email = this.form.get('Email')?.value;
+    this.authService.isUserAlreadyRegistered(email).subscribe({
+      next: () => {
+        this.userAlreadyRegistered = true;
+      },
+      error: () => {
+        this.userAlreadyRegistered = false;
+        this.continueRegistration(email);
+      }
+    });
+  }
+  continueRegistration(email: string){
+    const emailObj = {
+      email: email
+    }
+    this.continueRegistrationModal = true;
+    this.emailService.sendVerificationEmail(emailObj).subscribe({
+      next: () => {
+        if (this.intervalId) return;
+        this.intervalId = setInterval(() => {
+          if(this.timeLeft > 0){
+            this.timeLeft--;
+          }else{
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+          }
+        }, 1000);
+      },
+      error: () => {
+        console.log("error");
+      }
+    });
+  }
+  onClickSendCodeAgain(){
+    this.timeLeft = 60;
+    this.continueRegistration(this.form.get('Email')?.value);
+  }
+  verifyCode(){
+    if (!this.verificationCode) {
+      this.isCodeNotValid = true;
+      return;
+    }
+    const request = {email: this.form.get('Email')?.value, code: this.verificationCode}
+    this.emailService.verifyCode(request).subscribe({
+      next: () => {
+        this.continueRegistrationModal = false;
+        this.lastWindowToCompletingSignupModal = true;
+      },
+      error: () => {
+        this.isCodeNotValid = true;
+      }
+    });
+    this.verificationCode = "";
+  }
+  onClickSubmitToCompletingSignup(){
+    const firstName = this.formCompletingSignup.get('FirstName')?.value;
+    const lastName = this.formCompletingSignup.get('LastName')?.value;
+    const phone = this.formCompletingSignup.get('Phone')?.value;
+    this.submittedlastWindowToCompletingSignupModal = true;
+    const signupModel = {
       email: this.form.get('Email')?.value,
       password: this.form.get('Password')?.value,
-      confirmPassword: this.form.get('ConfirmPassword')?.value
-    };
-
+      confirmPassword: this.form.get('ConfirmPassword')?.value,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      dateOfBirth : '',
+      city : '',
+      street : '',
+      houseNumber : ''
+    }
     this.authService.signup(signupModel).subscribe({
       next: () => {
-        localStorage.removeItem('inSignupModel');
+        this.router.navigate(['/homepage']);
       },
       error: (err) => {
         console.log(err);

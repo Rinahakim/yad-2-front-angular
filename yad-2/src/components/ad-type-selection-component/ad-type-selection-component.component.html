@@ -1,0 +1,44 @@
+    <div class="container" [ngClass]="{'container-close': showDoneIcon}">
+        <div class="header">
+            <div *ngIf="!showDoneIcon">1</div>
+            <ng-content class="done-icon"></ng-content>
+            <div>{{ showDoneIcon ?' אני רוצה להשכיר נכס':' מה נפרסם היום?'}}</div>
+        </div>
+        <div class="category-container">
+            <div>
+                <img src="https://www.yad2.co.il/publish-ad/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fmango%2Fillustrations%2Fspot%2FPurchase.svg&w=128&q=75" alt="">
+                <div class="header-category">מכירה</div>
+            </div>
+            <div (click)="onClickRent()" [ngClass]="{'selected-category':isClickOnRent}">
+                <img src="https://www.yad2.co.il/publish-ad/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fmango%2Fillustrations%2Fspot%2FRent.svg&w=128&q=75" alt="">
+                <div class="header-category">השכרה</div>
+            </div>
+            <div>
+                <img src="https://www.yad2.co.il/publish-ad/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fmango%2Fillustrations%2Fspot%2FCommercial.svg&w=128&q=75" alt="">
+                <div class="header-category">מסחרי</div>
+                <div class="text">מחסנים, קליניקות, משרדים</div>
+            </div>
+            <div>
+                <img src="https://www.yad2.co.il/publish-ad/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fmango%2Fillustrations%2Fspot%2Fbusiness-off.svg&w=128&q=75" alt="">
+                <div class="header-category">עסקים למכירה</div>
+                <div class="text">הייטק, בתי קפה וכו'</div>
+            </div>
+        </div>
+        <div *ngIf="isClickOnRent" class="information-container">
+            <div>
+                <img src="https://www.yad2.co.il/publish-ad/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fmango%2Fillustrations%2Fminispot%2Fuser.svg&w=64&q=75" alt="">
+                <div class="flex-col">
+                    <div>רגע לפני שממשיכים, <span>מי מפרסם את הנכס?</span></div>
+                    <div>המידע יעזור לנו לדייק את הצורך ולהציג מידע רלוונטי בלבד</div>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button 
+                    *ngFor="let option of options" 
+                    (click)="onClickBtnToSelect(option)" 
+                    [ngClass]="{'selected': selectedOption === option}">
+                    {{ option }}
+                </button>
+            </div>
+        </div>
+    </div>

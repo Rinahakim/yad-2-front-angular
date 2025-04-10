@@ -13,6 +13,9 @@ export class AuthenticationService {
   
   constructor(private http: HttpClient) { }
 
+  isUserAlreadyRegistered(email: string){
+    return this.http.get(`${this.apiUrl}/Authentication/${email}`)
+  }
   signup(signupModel: SignupModel){
     return this.http.post(`${this.apiUrl}/Authentication/signup`, signupModel);
   }

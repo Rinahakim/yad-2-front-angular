@@ -1,50 +1,117 @@
-<svg class="back-btn" (click)="onClickBackBtn()" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>back-button</title><g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Group" fill="#363636" fill-rule="nonzero"><g id="↳🌈-Color"><path d="M3.58517708,6.46325876 C3.20825709,6.05958839 2.57546358,6.03790293 2.17179321,6.41482292 C1.76812284,6.79174291 1.74643738,7.42453642 2.12335737,7.82820679 L11.2264564,17.5773615 C11.6236377,18.0027311 12.2987377,18.0004 12.6929719,17.5722975 L21.6304932,7.86696248 C22.0046164,7.4606987 21.9785613,6.82807004 21.5722975,6.45394682 C21.1660337,6.0798236 20.5334051,6.10587867 20.1592819,6.51214245 L11.9522878,15.4241914 L3.58517708,6.46325876 Z" transform="translate(11.874578, 12.020308) rotate(-270.000000) translate(-11.874578, -12.020308) "></path></g></g></g></svg>
-<form [formGroup]="form" (ngSubmit) = onSubmit() class="form-container" 
-[ngClass]="{'form-container-signup': inSignupModel}">
-   <div class="header-form">היי, טוב לראות אותך</div>
-   <div class="field">
-      <label for="Email">מייל</label>
-      <input type="email" id = "Email" formControlName= "Email" 
-      placeholder="yourmail@email.co.il" autocomplete="on"
-      [ngClass]="{'error': submitted && this.form.get('Email')?.invalid}">
-      <div *ngIf="submitted && this.form.get('Email')?.invalid" class="error-message">לא לשכוח את המייל</div>
+<div *ngIf="!continueRegistrationModal && !lastWindowToCompletingSignupModal">
+   <svg class="back-btn" (click)="onClickBackBtn()" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>back-button</title><g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Group" fill="#363636" fill-rule="nonzero"><g id="↳🌈-Color"><path d="M3.58517708,6.46325876 C3.20825709,6.05958839 2.57546358,6.03790293 2.17179321,6.41482292 C1.76812284,6.79174291 1.74643738,7.42453642 2.12335737,7.82820679 L11.2264564,17.5773615 C11.6236377,18.0027311 12.2987377,18.0004 12.6929719,17.5722975 L21.6304932,7.86696248 C22.0046164,7.4606987 21.9785613,6.82807004 21.5722975,6.45394682 C21.1660337,6.0798236 20.5334051,6.10587867 20.1592819,6.51214245 L11.9522878,15.4241914 L3.58517708,6.46325876 Z" transform="translate(11.874578, 12.020308) rotate(-270.000000) translate(-11.874578, -12.020308) "></path></g></g></g></svg>
+   <form [formGroup]="form" (ngSubmit) = onSubmit() class="form-container" 
+   [ngClass]="{'form-container-signup': inSignupModel}">
+      <div class="header-form">היי, טוב לראות אותך</div>
+      <div class="field">
+         <label for="Email">מייל</label>
+         <input type="email" id = "Email" formControlName= "Email" 
+         placeholder="yourmail@email.co.il" autocomplete="on"
+         [ngClass]="{'error': submitted && this.form.get('Email')?.invalid}">
+         <div *ngIf="submitted && this.form.get('Email')?.invalid" class="error-message">לא לשכוח את המייל</div>
+      </div>
+      <div class="field">
+         <label for="Password">סיסמה</label>
+         <input [type]="showPassword ? 'text' : 'password'" id = "Password" formControlName= "Password" 
+         placeholder="הקלדת סיסמה" autocomplete="on"
+         [ngClass]="{'error': submitted && 
+         (this.form.get('Password')?.invalid || form.errors?.['shortpass'] || (this.form.get('ConfirmPassword')?.valid &&  !MatchPassword))}">
+         <button type="button" class="show-password-button" (click)="onClickShowPassword()" aria-label="הצג סיסמה">
+            <span class="y2i_Show" aria-hidden="true"></span>
+         </button>
+         <div *ngIf="submitted && this.form.get('Password')?.invalid && !inSignupModel" class="error-message">לא לשכוח להזין סיסמה</div>
+      </div>
+      <div *ngIf="inSignupModel" class="field">
+         <label for="ConfirmPassword">אימות סיסמה</label>
+         <input [type]="showConfirmPassword ? 'text' : 'password'" id = "ConfirmPassword" formControlName= "ConfirmPassword" 
+         placeholder="הקלדת סיסמה" autocomplete="on"
+         [ngClass]="{'error': submitted && (form.errors?.['mismatch'] || form.errors?.['shortpass'] || this.form.get('ConfirmPassword')?.invalid) }">
+         <button type="button" class="show-password-button" (click)="onClickShowConfirmPassword()" aria-label="הצג סיסמה">
+            <span class="y2i_Show" aria-hidden="true"></span>
+         </button>
+         <div *ngIf="submitted && this.form.get('ConfirmPassword')?.invalid" class="error-message">לא לשכוח להזין סיסמה</div>
+         <div *ngIf="submitted && this.form.get('ConfirmPassword')?.valid && this.form.get('Password')?.valid && !validPassword && !form.errors?.['shortpass']" class="error-message">הסיסמאות לא זהות</div>
+         <div *ngIf="submitted && this.form.get('ConfirmPassword')?.valid && this.form.get('Password')?.valid &&  !MatchPassword && validPassword" class="error-message">נבקש שהסיסמה תכלול אותיות באנגלית וספרות</div>
+         <div *ngIf="submitted && this.form.get('ConfirmPassword')?.valid && this.form.get('Password')?.valid &&  form.errors?.['shortpass']" class="error-message">נבקש סיסמה באורך 8-20 תווים</div>
+      </div>
+      <div class="reset-password">שכחתי סיסמה</div>
+      <div *ngIf="userNeedToSign" class="error-message-need-signup">אימייל או סיסמה אינם תקינים</div>
+      <div *ngIf="userAlreadyRegistered" class="error-message-already-registered">משהו השתבש, כדאי לנסות שוב</div>
+      <button type="submit" class="submit-btn">{{ inSignupModel ? 'המשך' : 'התחברות' }}</button>
+      <div class="text-separation">
+         או התחברו דרך
+      </div>
+      <div class="btns-container">
+         <button type="button"><span class="u-margin-left-3 u-margin-top-3"><svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>google</title><g id="google" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="icons8-google" transform="translate(4.000000, 4.000000)" fill-rule="nonzero"><path d="M17.82495,7.23735 L17.1,7.23735 L17.1,7.2 L9,7.2 L9,10.8 L14.08635,10.8 C13.3443,12.89565 11.35035,14.4 9,14.4 C6.01785,14.4 3.6,11.98215 3.6,9 C3.6,6.01785 6.01785,3.6 9,3.6 C10.37655,3.6 11.6289,4.1193 12.58245,4.96755 L15.1281,2.4219 C13.5207,0.92385 11.3706,0 9,0 C4.02975,0 0,4.02975 0,9 C0,13.97025 4.02975,18 9,18 C13.97025,18 18,13.97025 18,9 C18,8.39655 17.9379,7.8075 17.82495,7.23735 Z" id="Path" fill="#FFC107"></path><path d="M1.0377,4.81095 L3.99465,6.9795 C4.79475,4.9986 6.73245,3.6 9,3.6 C10.37655,3.6 11.6289,4.1193 12.58245,4.96755 L15.1281,2.4219 C13.5207,0.92385 11.3706,0 9,0 C5.5431,0 2.5452,1.95165 1.0377,4.81095 Z" id="Path" fill="#FF3D00"></path><path d="M9,18 C11.3247,18 13.437,17.11035 15.03405,15.6636 L12.24855,13.3065 C11.34495,13.99095 10.22175,14.4 9,14.4 C6.6591,14.4 4.67145,12.90735 3.92265,10.8243 L0.98775,13.08555 C2.47725,16.0002 5.50215,18 9,18 Z" id="Path" fill="#4CAF50"></path><path d="M17.82495,7.23735 L17.1,7.23735 L17.1,7.2 L9,7.2 L9,10.8 L14.08635,10.8 C13.72995,11.80665 13.0824,12.6747 12.2472,13.30695 C12.24765,13.3065 12.2481,13.3065 12.24855,13.30605 L15.03405,15.66315 C14.83695,15.84225 18,13.5 18,9 C18,8.39655 17.9379,7.8075 17.82495,7.23735 Z" id="Path" fill="#1976D2"></path></g></g></svg></span><span class="text">גוגל</span></button>
+         <button type="button"><span class="u-margin-left-3 u-margin-top-3"><svg width="26px" height="26px" viewBox="0 0 842 1220" xmlns="http://www.w3.org/2000/svg"><path d="M702 960c-54.2 52.6-114 44.4-171 19.6-60.6-25.3-116-26.9-180 0-79.7 34.4-122 24.4-170-19.6-271-279-231-704 77-720 74.7 4 127 41.3 171 44.4 65.4-13.3 128-51.4 198-46.4 84.1 6.8 147 40 189 99.7-173 104-132 332 26.9 396-31.8 83.5-72.6 166-141 227zM423 237C414.9 113 515.4 11 631 1c15.9 143-130 250-208 236z"></path></svg></span><span class="text">אפל</span></button>
+      </div>
+      <div class="signup-link">
+         {{ inSignupModel ? 'כבר יש לך חשבון?' : 'אין לך חשבון?' }}
+         <span (click)="onClickLink()">{{ inSignupModel ? 'להתחברות' : 'להרשמה' }}</span>
+      </div>
+   </form>
+</div>
+
+<div class="continue-registration-container" *ngIf="continueRegistrationModal">
+   <img src="https://assets.yad2.co.il/login/icon_login.svg" alt="icon-login">
+   <div class="header-continue-registration">אימות מייל</div>
+   <div class="text">במידה והמייל הזה קיים, שלחנו לך את קוד האימות</div>
+   <input type="text" placeholder="הזנת קוד" [(ngModel)]="verificationCode" [ngClass]="{'code-error': isCodeNotValid}">
+   <div *ngIf="isCodeNotValid" class="code-error-massage">היי, זה לא הקוד ששלחנו לך...</div>
+   <div *ngIf="timeLeft > 0">נוכל לשלוח קוד נוסף בעוד {{timeLeft}}</div>
+   <div *ngIf="timeLeft === 0">לא קיבלתי את המייל. 
+      <button class="link-to-code-again" (click)="onClickSendCodeAgain()">שלחו לי שוב</button>
    </div>
-   <div class="field">
-      <label for="Password">סיסמה</label>
-      <input [type]="showPassword ? 'text' : 'password'" id = "Password" formControlName= "Password" 
-      placeholder="הקלדת סיסמה" autocomplete="on"
-      [ngClass]="{'error': submitted && 
-      (this.form.get('Password')?.invalid || form.errors?.['shortpass'] || (this.form.get('ConfirmPassword')?.valid &&  !MatchPassword))}">
-      <button type="button" class="show-password-button" (click)="onClickShowPassword()" aria-label="הצג סיסמה">
-        <span class="y2i_Show" aria-hidden="true"></span>
-      </button>
-      <div *ngIf="submitted && this.form.get('Password')?.invalid && !inSignupModel" class="error-message">לא לשכוח להזין סיסמה</div>
-   </div>
-   <div *ngIf="inSignupModel" class="field">
-      <label for="ConfirmPassword">אימות סיסמה</label>
-      <input [type]="showConfirmPassword ? 'text' : 'password'" id = "ConfirmPassword" formControlName= "ConfirmPassword" 
-      placeholder="הקלדת סיסמה" autocomplete="on"
-      [ngClass]="{'error': submitted && (form.errors?.['mismatch'] || form.errors?.['shortpass'] || this.form.get('ConfirmPassword')?.invalid) }">
-      <button type="button" class="show-password-button" (click)="onClickShowConfirmPassword()" aria-label="הצג סיסמה">
-        <span class="y2i_Show" aria-hidden="true"></span>
-      </button>
-      <div *ngIf="submitted && this.form.get('ConfirmPassword')?.invalid" class="error-message">לא לשכוח להזין סיסמה</div>
-      <div *ngIf="submitted && this.form.get('ConfirmPassword')?.valid && this.form.get('Password')?.valid && !validPassword && !form.errors?.['shortpass']" class="error-message">הסיסמאות לא זהות</div>
-      <div *ngIf="submitted && this.form.get('ConfirmPassword')?.valid && this.form.get('Password')?.valid &&  !MatchPassword && validPassword" class="error-message">נבקש שהסיסמה תכלול אותיות באנגלית וספרות</div>
-      <div *ngIf="submitted && this.form.get('ConfirmPassword')?.valid && this.form.get('Password')?.valid &&  form.errors?.['shortpass']" class="error-message">נבקש סיסמה באורך 8-20 תווים</div>
-   </div>
-   <div class="reset-password">שכחתי סיסמה</div>
-   <div *ngIf="userNeedToSign" class="error-message-need-signup">אימייל או סיסמה אינם תקינים</div>
-   <button type="submit" class="submit-btn">{{ inSignupModel ? 'המשך' : 'התחברות' }}</button>
-   <div class="text-separation">
-      או התחברו דרך
-   </div>
-   <div class="btns-container">
-      <button type="button"><span class="u-margin-left-3 u-margin-top-3"><svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>google</title><g id="google" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="icons8-google" transform="translate(4.000000, 4.000000)" fill-rule="nonzero"><path d="M17.82495,7.23735 L17.1,7.23735 L17.1,7.2 L9,7.2 L9,10.8 L14.08635,10.8 C13.3443,12.89565 11.35035,14.4 9,14.4 C6.01785,14.4 3.6,11.98215 3.6,9 C3.6,6.01785 6.01785,3.6 9,3.6 C10.37655,3.6 11.6289,4.1193 12.58245,4.96755 L15.1281,2.4219 C13.5207,0.92385 11.3706,0 9,0 C4.02975,0 0,4.02975 0,9 C0,13.97025 4.02975,18 9,18 C13.97025,18 18,13.97025 18,9 C18,8.39655 17.9379,7.8075 17.82495,7.23735 Z" id="Path" fill="#FFC107"></path><path d="M1.0377,4.81095 L3.99465,6.9795 C4.79475,4.9986 6.73245,3.6 9,3.6 C10.37655,3.6 11.6289,4.1193 12.58245,4.96755 L15.1281,2.4219 C13.5207,0.92385 11.3706,0 9,0 C5.5431,0 2.5452,1.95165 1.0377,4.81095 Z" id="Path" fill="#FF3D00"></path><path d="M9,18 C11.3247,18 13.437,17.11035 15.03405,15.6636 L12.24855,13.3065 C11.34495,13.99095 10.22175,14.4 9,14.4 C6.6591,14.4 4.67145,12.90735 3.92265,10.8243 L0.98775,13.08555 C2.47725,16.0002 5.50215,18 9,18 Z" id="Path" fill="#4CAF50"></path><path d="M17.82495,7.23735 L17.1,7.23735 L17.1,7.2 L9,7.2 L9,10.8 L14.08635,10.8 C13.72995,11.80665 13.0824,12.6747 12.2472,13.30695 C12.24765,13.3065 12.2481,13.3065 12.24855,13.30605 L15.03405,15.66315 C14.83695,15.84225 18,13.5 18,9 C18,8.39655 17.9379,7.8075 17.82495,7.23735 Z" id="Path" fill="#1976D2"></path></g></g></svg></span><span class="text">גוגל</span></button>
-      <button type="button"><span class="u-margin-left-3 u-margin-top-3"><svg width="26px" height="26px" viewBox="0 0 842 1220" xmlns="http://www.w3.org/2000/svg"><path d="M702 960c-54.2 52.6-114 44.4-171 19.6-60.6-25.3-116-26.9-180 0-79.7 34.4-122 24.4-170-19.6-271-279-231-704 77-720 74.7 4 127 41.3 171 44.4 65.4-13.3 128-51.4 198-46.4 84.1 6.8 147 40 189 99.7-173 104-132 332 26.9 396-31.8 83.5-72.6 166-141 227zM423 237C414.9 113 515.4 11 631 1c15.9 143-130 250-208 236z"></path></svg></span><span class="text">אפל</span></button>
-   </div>
-   <div class="signup-link">
-      {{ inSignupModel ? 'כבר יש לך חשבון?' : 'אין לך חשבון?' }}
-      <span (click)="onClickLink()">{{ inSignupModel ? 'להתחברות' : 'להרשמה' }}</span>
-   </div>
-</form>
+   <div *ngIf="timeLeft === 0" class="note-massage">כדאי לבדוק בתיבת הספאם</div>
+   <button class="submit-btn" (click)="verifyCode()">המשך</button>
+</div>
+
+<div class="last-window-to-completing-sign-up" *ngIf="lastWindowToCompletingSignupModal">
+   <form [formGroup]="formCompletingSignup" (ngSubmit) = onClickSubmitToCompletingSignup() class="form-container">
+      <div class="header-form">היי, נעים להכיר</div>
+      <div class="field">
+         <label for="FirstName">שם פרטי*</label>
+         <input type="text" id = "FirstName" formControlName= "FirstName" 
+         placeholder="הקלדת שם פרטי" 
+         [ngClass]="{'error': submittedlastWindowToCompletingSignupModal && 
+         this.formCompletingSignup.get('FirstName')?.invalid}">
+         <div *ngIf="submittedlastWindowToCompletingSignupModal
+          && this.formCompletingSignup.get('FirstName')?.invalid" class="error-message">נבקש למלא את השם</div>
+      </div>
+      <div class="field">
+         <label for="LastName">שם משפחה*</label>
+         <input type="text" id = "LastName" formControlName= "LastName" 
+         placeholder="הקלדת שם משפחה"
+         [ngClass]="{'error': submittedlastWindowToCompletingSignupModal && 
+         this.formCompletingSignup.get('LastName')?.invalid}">
+         <div *ngIf="submittedlastWindowToCompletingSignupModal
+          && this.formCompletingSignup.get('LastName')?.invalid" class="error-message">נבקש למלא את שם המשפחה</div>
+      </div>
+      <div class="field">
+         <label for="Phone">מספר טלפון* </label>
+         <input type="text" id = "Phone" formControlName= "Phone" 
+         placeholder="מספר נייד"
+         [ngClass]="{'error': submittedlastWindowToCompletingSignupModal && 
+         this.formCompletingSignup.get('Phone')?.invalid}">
+         <div *ngIf="submittedlastWindowToCompletingSignupModal
+          && this.formCompletingSignup.get('Phone')?.invalid" class="error-message">היי, לא לשכוח למלא מספר טלפון</div>
+      </div>
+      <div class="checkbox-container">
+         <input type="checkbox" formControlName="Terms" 
+         [ngClass]="{'error-checkbox': submittedlastWindowToCompletingSignupModal && 
+         formCompletingSignup.get('Terms')?.invalid}">
+         <div>קראתי ואישרתי את <span class="link-to-terms">תקנון</span> האתר*</div>
+         <div *ngIf="submittedlastWindowToCompletingSignupModal && formCompletingSignup.get('Terms')?.invalid" 
+         class="error-message-checkbox">
+         <br>
+         היי, לא לשכוח לאשר את התקנון
+      </div>
+      </div>
+      <div class="checkbox-container">
+         <input type="checkbox">
+         <div>אני מאשר/ת קבלת תוכן שיווקי מיד2 ו/או מצדדים שלישיים באמצעי הקשר שמסרתי (גם בשירותי דיוור ישיר)</div>
+      </div>
+      <button type="submit" class="submit-btn" (click)="onClickSubmitToCompletingSignup()"
+      [disabled]="this.formCompletingSignup.invalid">סיום ההרשמה</button>
+   </form>
+</div>
